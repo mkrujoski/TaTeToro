@@ -37,11 +37,11 @@ public class Juego {
 	public void cambiarTurno() {
 		if(turno == 'X') {
 			turno = 'O';
-			System.out.println(habilitado);
+			
 		}
 		else {
 			turno = 'X';
-		   System.out.println(habilitado);
+		   
 		}
 	
 	}
@@ -93,7 +93,7 @@ public class Juego {
 				tablero[1][2] = 'X';
 			}
 			else {
-				tablero[1][2] = 'X';
+				tablero[1][2] = 'O';
 			}
 		}
 		if(num==7 && habilitado==true) {
@@ -122,34 +122,74 @@ public class Juego {
 		}
 	}
 	//-----------------------------------------------------------
-	public void jugadaGanadora() {
-		if ( tablero[0][0]==tablero[0][1]&& tablero[0][1]==tablero[0][2]||
-			 tablero[1][0]==tablero[1][1]&& tablero[1][1]==tablero[1][2]||
-			 tablero[2][0]==tablero[2][1]&& tablero[2][1]==tablero[2][2]||
-			 tablero[0][0]==tablero[1][1]&& tablero[1][1]==tablero[2][2]||
-			 tablero[0][2]==tablero[1][1]&& tablero[1][1]==tablero[2][0]||
-			 tablero[0][0]==tablero[1][0]&& tablero[1][0]==tablero[2][0]||
-			 tablero[0][1]==tablero[1][1]&& tablero[1][1]==tablero[2][1]||
-			 tablero[0][2]==tablero[1][2]&& tablero[1][2]==tablero[2][2]||
-			 tablero[0][1]==tablero[1][2]&& tablero[1][2]==tablero[2][0]||
-			 tablero[0][0]==tablero[1][2]&& tablero[1][2]==tablero[2][1]||
-			 tablero[0][1]==tablero[1][0]&& tablero[1][0]==tablero[2][2]||
-			 tablero[0][2]==tablero[1][0]&& tablero[1][0]==tablero[2][1] )
-			 
-		 {
-			if(turno == 'X') {
-				System.out.println("gano X");
-				habilitado=false;
-				scoreJugador1++;
-			}
-			else {
-				System.out.println("gano O");
-				habilitado=false;
-				scoreJugador2++;
-			}
-		}
-	}	
-	
+	public boolean jugadaGanadora(int num) {
+        if (num==1 || num==2 || num==3 || num==4 || num==5 || num==6 ||
+        	num==7 || num==8 || num==9 || num==10 || num==11 || num==12	) 
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+
+    }
+
+	//-----------------------------------------------------------
+		public int listaGanadoras() 
+	    {
+	        if (tablero[0][0]==tablero[0][1]&& tablero[0][1]==tablero[0][2]) 
+	        {
+	        	return 1;
+	        }
+	        if (tablero[1][0]==tablero[1][1]&& tablero[1][1]==tablero[1][2])
+	        {
+	        	return 2;
+	        }
+	        if (tablero[2][0]==tablero[2][1]&& tablero[2][1]==tablero[2][2]) 
+	        {
+	        	return 3;
+	        }
+	        if (tablero[0][0]==tablero[1][1]&& tablero[1][1]==tablero[2][2]) 
+	        {
+	        	return 4;
+	        }
+	        if (tablero[0][2]==tablero[1][1]&& tablero[1][1]==tablero[2][0]) 
+	        {
+	        	return 5;
+	        }
+	        if (tablero[0][0]==tablero[1][0]&& tablero[1][0]==tablero[2][0]) 
+	        {
+	        	return 6;
+	        }
+	        if (tablero[0][1]==tablero[1][1]&& tablero[1][1]==tablero[2][1]) 
+	        {
+	        	return 7;
+	        }
+	        if (tablero[0][2]==tablero[1][2]&& tablero[1][2]==tablero[2][2]) 
+	        {
+	        	return 8;
+	        }
+	        if (tablero[0][1]==tablero[1][2]&& tablero[1][2]==tablero[2][0]) 
+	        {
+	        	return 9;
+	        }
+	        if (tablero[0][1]==tablero[1][0]&& tablero[1][0]==tablero[2][2]) 
+	        {
+	        	return 10;
+	        }
+	        if (tablero[2][1]==tablero[1][0]&& tablero[1][0]==tablero[0][2]) 
+	        {
+	        	return 11;
+	        }
+	        if (tablero[2][1]==tablero[1][2]&& tablero[1][2]==tablero[0][0])
+	        {
+	        	return 12;
+	        } 
+	        
+	        return 0;
+	        
+	    }
 	//-----------------------------------------------------------
 	public void vaciarJugadas() {
 		tablero[0][0] = '1';
