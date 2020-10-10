@@ -16,6 +16,8 @@ import javax.swing.ImageIcon;
 	public ImageIcon fondoTablero;
 	public ImageIcon x;
 	public ImageIcon o;
+	public ImageIcon x_ganadora;
+	public ImageIcon o_ganadora;
 	public ImageIcon turnoO;
 	public ImageIcon turnoX;
 	public ImageIcon iconX;
@@ -38,6 +40,8 @@ import javax.swing.ImageIcon;
 		turnoX = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/turno X3.png"));
 		iconX = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/scoreX.png"));
 		iconO = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/scoreO.png"));
+		x_ganadora = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/XGanadora.png"));
+		o_ganadora = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/OGanadora.png"));
 		
 		
 	}
