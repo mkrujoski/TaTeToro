@@ -93,7 +93,7 @@ public class Juego {
 				tablero[1][2] = 'X';
 			}
 			else {
-				tablero[1][2] = 'X';
+				tablero[1][2] = 'O';
 			}
 		}
 		if(num==7 && habilitado==true) {
