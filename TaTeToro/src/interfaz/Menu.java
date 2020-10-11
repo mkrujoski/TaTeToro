@@ -21,9 +21,9 @@ import javax.swing.border.EmptyBorder;
 
 public class Menu {
 
-	private JFrame frame;
-	private Imagenes imagenes;
-	private PantallaDeJuego pantallaTablero;
+   private JFrame frame;
+   private Imagenes imagenes;
+   private PantallaDeJuego pantallaTablero;
 
 
 	/**
@@ -55,7 +55,7 @@ public class Menu {
 	private void initialize() {
 		frame = new JFrame();
 		
-		imagenes = new Imagenes();
+		//imagenes = new Imagenes();
 		
 		pantallaTablero = new PantallaDeJuego();
 		
@@ -67,18 +67,18 @@ public class Menu {
 	
 		JButton btnJugar = new JButton("");
 		btnJugar.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnJugar.setIcon(imagenes.botonJugar);
+		btnJugar.setIcon(Imagenes.botonJugar);
 		//btnJugar.setIcon(Imagenes.botonJugar);
 		btnJugar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-		btnJugar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnJugar.setBounds(234, 333, 131, 33);
 		btnJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				pantallaTablero.getFrame().setVisible(true);
+				//revisar esto
+				pantallaTablero.getFrame().setVisible(true); //ver esto xq tendria que destruir el menu?
+				frame.setVisible(false);
+				
+				
 			}
 		});
 		frame.getContentPane().setLayout(null);
@@ -94,7 +94,7 @@ public class Menu {
 		});
 
 		
-		btnSalir.setIcon(imagenes.botonSalir);
+		btnSalir.setIcon(Imagenes.botonSalir);
 		//btnSalir.setIcon(Imagenes.botonSalir);
 		btnSalir.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
@@ -102,7 +102,7 @@ public class Menu {
 		frame.getContentPane().add(btnSalir);
 		
 		JButton btnReglas = new JButton("");
-		btnReglas.setIcon(imagenes.botonReglas);
+		btnReglas.setIcon(Imagenes.botonReglas);
 		//btnReglas.setIcon(Imagenes.botonReglas);
 		btnReglas.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnReglas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
@@ -110,7 +110,7 @@ public class Menu {
 		frame.getContentPane().add(btnReglas);
 		
 		JLabel lblRecuadroBackground = new JLabel(""); //RECUADRO FONDO
-		lblRecuadroBackground.setIcon(imagenes.recuadroBackgroundMenu);
+		lblRecuadroBackground.setIcon(Imagenes.recuadroBackgroundMenu);
 		//lblRecuadroBackground.setIcon(Imagenes.recuadroBackgroundMenu);
 		lblRecuadroBackground.setBounds(185, 276, 228, 263);
 		frame.getContentPane().add(lblRecuadroBackground);
@@ -119,14 +119,15 @@ public class Menu {
 		lblBackground.setBounds(0, 0, 600, 700);
 		//NO BORRAR ESTA LINEA HASTA EL FINAL DEL TP
 		//lblBackground.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/gifBackground.gif")));
-		lblBackground.setIcon(imagenes.backgroundMenu);
+		lblBackground.setIcon(Imagenes.backgroundMenu);
 		//lblBackground.setIcon(Imagenes.backgroundMenu);
 		frame.getContentPane().add(lblBackground);
-		
-		
-	
-		
-		
-		
+					
 	}
+
+	public JFrame getFrame() {
+		return frame;
+	}
+
+	
 }
