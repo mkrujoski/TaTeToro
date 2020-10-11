@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JTextField;
-import com.jgoodies.forms.factories.DefaultComponentFactory;
+//import com.jgoodies.forms.factories.DefaultComponentFactory;
 import codigoCliente.Juego;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -19,6 +19,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
+import com.jgoodies.forms.factories.DefaultComponentFactory;
 
 public class Usuarios {
 
@@ -192,6 +193,10 @@ public class Usuarios {
 		Jugador2.setFont(new Font("Showcard Gothic", Font.PLAIN, 18));
 		Jugador2.setBounds(222, 320, 119, 31);
 		frame.getContentPane().add(Jugador2);
+		
+		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("");
+		lblNewJgoodiesLabel.setBounds(32, 29, 519, 31);
+		frame.getContentPane().add(lblNewJgoodiesLabel);
 	}
 
 	//GETTERS Y SETTERS DEL FRAME
