@@ -4,26 +4,26 @@ import javax.swing.ImageIcon;
 
 // despues decidir si hacer esta clase static o public
 
-//DE MOMENTO ESTÁ STATIC
-
 	public class Imagenes {
 	
-	static ImageIcon backgroundMenu;
-	static ImageIcon recuadroBackgroundMenu;
-	static ImageIcon botonJugar;
-	static ImageIcon botonReglas;
-	static ImageIcon botonSalir;
-	static ImageIcon botonAtras;
-	static ImageIcon tablero;
-	static ImageIcon fondoTablero;
-	static ImageIcon x;
-	static ImageIcon o;
-	static ImageIcon x_ganadora;
-	static ImageIcon o_ganadora;
-	static ImageIcon turnoO;
-	static ImageIcon turnoX;
-	static ImageIcon iconX;
-	static ImageIcon iconO;
+	public ImageIcon backgroundMenu;
+	public ImageIcon recuadroBackgroundMenu;
+	public ImageIcon botonJugar;
+	public ImageIcon botonReglas;
+	public ImageIcon botonSalir;
+	public ImageIcon botonAtras;
+	public ImageIcon tablero;
+	public ImageIcon fondoTablero;
+	public ImageIcon x;
+	public ImageIcon o;
+	public ImageIcon x_ganadora;
+	public ImageIcon o_ganadora;
+	public ImageIcon turnoO;
+	public ImageIcon turnoX;
+	public ImageIcon iconX;
+	public ImageIcon iconO;
+	public ImageIcon ImagenJ1;
+	public ImageIcon ImagenJ2;
 	
 	Imagenes(){
 		//backgroundMenu = new ImageIcon ("/imagenesDelFondo/gifBackground.gif");
@@ -44,9 +44,12 @@ import javax.swing.ImageIcon;
 		iconO = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/scoreO.png"));
 		x_ganadora = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/XGanadora.png"));
 		o_ganadora = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/OGanadora.png"));
-		
-		
 	}
-	
-
+	public void setImagenJugador1(String path) {
+		
+        ImagenJ1 = new ImageIcon(path);
+    }
+    public void setImagenJugador2(String path) {
+        ImagenJ2 = new ImageIcon(path);
+    }
 }

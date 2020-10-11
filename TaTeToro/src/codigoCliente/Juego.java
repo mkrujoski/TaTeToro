@@ -1,16 +1,17 @@
 package codigoCliente;
 
-//import interfaz.PantallaDeJuego;
-
 public class Juego {
 	private static char turno;
 	private char[][] tablero;
 	private static boolean habilitado;
-//	private Integer scoreJugador1; 
-//	private Integer scoreJugador2;
+	private static String Jugador1;
+	private static String Jugador2;
+	private Integer scoreJugador1; 
+	private Integer scoreJugador2;
+
 	
 	public Juego() {
-		
+	
 		turno = 'X';
 		habilitado = true;
 //		scoreJugador1 = 0; scoreJugador2 = 0;
@@ -33,6 +34,26 @@ public class Juego {
 		}
 	
 	
+	public Integer getScoreJugador1() {
+		return scoreJugador1;
+	}
+
+
+	public void setScoreJugador1(Integer scoreJugador1) {
+		this.scoreJugador1 = scoreJugador1;
+	}
+
+
+	public Integer getScoreJugador2() {
+		return scoreJugador2;
+	}
+
+
+	public void setScoreJugador2(Integer scoreJugador2) {
+		this.scoreJugador2 = scoreJugador2;
+	}
+
+
 	//-----------------------------------------------------------
 	public void cambiarTurno() {
 		if(turno == 'X') {
@@ -212,5 +233,22 @@ public class Juego {
 		return habilitado;
 	}	
 
-	
+	public static String getJugador1() {
+		return Jugador1;
+	}
+
+
+	public static void setJugador1(String jugador1) {
+		Jugador1 = jugador1;
+	}
+
+
+	public static String getJugador2() {
+		return Jugador2;
+	}
+
+
+	public static void setJugador2(String jugador2) {
+		Jugador2 = jugador2;
+	}
 }
