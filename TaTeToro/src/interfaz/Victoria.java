@@ -36,9 +36,12 @@ public class Victoria {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(680, 130, 600, 700);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 	}
-
+	
+	public JFrame getFrame() {
+		return frame;
+	}
 }
