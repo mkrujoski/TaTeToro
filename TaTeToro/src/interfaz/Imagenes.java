@@ -22,6 +22,8 @@ import javax.swing.ImageIcon;
 	public ImageIcon turnoX;
 	public ImageIcon iconX;
 	public ImageIcon iconO;
+	public ImageIcon ImagenJ1;
+	public ImageIcon ImagenJ2;
 	
 	Imagenes(){
 		//backgroundMenu = new ImageIcon ("/imagenesDelFondo/gifBackground.gif");
@@ -42,9 +44,12 @@ import javax.swing.ImageIcon;
 		iconO = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/scoreO.png"));
 		x_ganadora = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/XGanadora.png"));
 		o_ganadora = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/OGanadora.png"));
-		
-		
 	}
-	
-
+	public void setImagenJugador1(String path) {
+		
+        ImagenJ1 = new ImageIcon(path);
+    }
+    public void setImagenJugador2(String path) {
+        ImagenJ2 = new ImageIcon(path);
+    }
 }

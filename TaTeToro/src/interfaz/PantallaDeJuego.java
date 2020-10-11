@@ -1,13 +1,11 @@
 package interfaz;
 
-import java.awt.image.*;
+//import java.awt.image.*;
 import java.awt.*;
 import javax.swing.*;
-import javax.imageio.*;
-import javax.swing.border.Border;
-
+//import javax.imageio.*;
+//import javax.swing.border.Border;
 import codigoCliente.Juego;
-
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
@@ -91,7 +89,7 @@ public class PantallaDeJuego {
 		Tablero.setIcon(imagenesDelTablero.tablero);
 		frame.getContentPane().add(Tablero);
 		
-		JLabel lblNombreJugador1 = new JLabel("PEPE");
+		JLabel lblNombreJugador1 = new JLabel(Juego.getJugador1());
 		lblNombreJugador1.setForeground(Color.BLACK);
 		lblNombreJugador1.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
 		lblNombreJugador1.setBounds(77, 21, 138, 43);
@@ -102,7 +100,7 @@ public class PantallaDeJuego {
 		lblIconX.setBounds(21, 21, 46, 43);
 		frame.getContentPane().add(lblIconX);
 		
-		JLabel lblNombreJugador2 = new JLabel("PAULA");
+		JLabel lblNombreJugador2 = new JLabel(Juego.getJugador2());
 		lblNombreJugador2.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
 		lblNombreJugador2.setBounds(473, 21, 138, 43);
 		frame.getContentPane().add(lblNombreJugador2);
@@ -122,7 +120,8 @@ public class PantallaDeJuego {
 		btnBotonSalir.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)); //DE MOMENTO, CIERRA LA VENTANA POR COMPLETO
+//				frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING)); //DE MOMENTO, CIERRA LA VENTANA POR COMPLETO
+				frame.dispose();
 			}
 		});
 		btnBotonSalir.setIcon(imagenesDelTablero.botonSalir);
@@ -132,6 +131,14 @@ public class PantallaDeJuego {
 		frame.getContentPane().add(btnBotonSalir);
 		
 		JButton btnBotonAtras = new JButton("");
+		btnBotonAtras.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				frame.setVisible(false);
+				Usuarios vent = new Usuarios();
+				vent.getFrame().setVisible(true);
+			}
+		});
 		btnBotonAtras.setIcon(imagenesDelTablero.botonAtras);
 		btnBotonAtras.setFont(new Font("Showcard Gothic", Font.PLAIN, 23));
 		btnBotonAtras.setHorizontalTextPosition(SwingConstants.CENTER);
