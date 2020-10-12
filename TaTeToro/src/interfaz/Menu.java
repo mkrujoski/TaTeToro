@@ -17,6 +17,8 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JInternalFrame;
 import java.awt.Font;
+import javax.swing.ImageIcon;
+import javax.swing.border.SoftBevelBorder;
 //import javax.swing.JTextPane;
 //import java.awt.Canvas;
 //import javax.swing.border.CompoundBorder;
@@ -82,18 +84,19 @@ public class Menu {
 		JButton btnSalir = new JButton("");
 		JLabel lblRecuadroBackground = new JLabel(""); //RECUADRO FONDO
 		JLabel lblBackground = new JLabel(""); //FONDO
-		JButton btnOk = new JButton("Ok");
-		btnOk.setVisible(false);
+		JButton btnAtras = new JButton("");
+		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+		btnAtras.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/botonAtras.png")));
+		btnAtras.setVisible(false);
 		
-		btnOk.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		btnOk.setVerticalAlignment(SwingConstants.TOP);
-		btnOk.setBounds(262, 605, 85, 21);
-		frame.getContentPane().add(btnOk);
+		btnAtras.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+		btnAtras.setBounds(248, 607, 131, 33);
+		frame.getContentPane().add(btnAtras);
 		
 		
-		JLabel Reglas = new JLabel("Esta es una nueva versi\u00F3n del juego Tateti! Se trata de un tablero de forma toroidal* , "
-				+ "la cual agrega cuatro nuevas formas de ganar. Presiona Start para crear tu usuario.");
-		Reglas.setBounds(58, 297, 491, 356);
+		JLabel Reglas = new JLabel("");
+		Reglas.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/instrucciones1.png")));
+		Reglas.setBounds(58, 237, 500, 327);
 		frame.getContentPane().add(Reglas);
 		Reglas.setVisible(false);
 		frame.getContentPane().setLayout(null);
@@ -107,9 +110,9 @@ public class Menu {
 				btnJugar.setVisible(false);
 				btnReglas.setVisible(false);
 				Reglas.setVisible(true);
-				btnOk.setVisible(true);
+				btnAtras.setVisible(true);
 				
-				btnOk.addMouseListener(new MouseAdapter() {
+				btnAtras.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						lblRecuadroBackground.setVisible(true);
@@ -117,7 +120,7 @@ public class Menu {
 						btnJugar.setVisible(true);
 						btnReglas.setVisible(true);
 						Reglas.setVisible(false);
-						btnOk.setVisible(false);
+						btnAtras.setVisible(false);
 					}
 				});
 			}

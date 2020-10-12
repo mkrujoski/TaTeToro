@@ -191,7 +191,9 @@ public class Usuarios {
 		btnSalir.setIcon(img.botonSalir);
 		frame.getContentPane().add(btnSalir);
 		
-        JButton GuardarJ2 = new JButton("Guardar");
+        JButton GuardarJ2 = new JButton("");
+        GuardarJ2.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/botonGuardar.png")));
+        GuardarJ2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
         GuardarJ2.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -201,14 +203,15 @@ public class Usuarios {
                 GuardarJ2.setEnabled(false);
             }
         });
-        GuardarJ2.setVerticalAlignment(SwingConstants.TOP);
         GuardarJ2.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-        GuardarJ2.setBounds(419, 400, 118, 21);
+        GuardarJ2.setBounds(419, 397, 99, 33);
         frame.getContentPane().add(GuardarJ2);
 		      
         
 		        
-		JButton GuardarJ1 = new JButton("Guardar");
+		JButton GuardarJ1 = new JButton("");
+		GuardarJ1.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/botonGuardar.png")));
+		GuardarJ1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
 		GuardarJ1.addMouseListener(new MouseAdapter() {
 		    @Override
 		    public void mouseClicked(MouseEvent e) {
@@ -218,9 +221,8 @@ public class Usuarios {
 		        GuardarJ1.setEnabled(false);
 		    }
 		});
-		GuardarJ1.setVerticalAlignment(SwingConstants.TOP);
 		GuardarJ1.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		GuardarJ1.setBounds(419, 111, 118, 21);
+		GuardarJ1.setBounds(419, 108, 99, 33);
 		frame.getContentPane().add(GuardarJ1);
 		
 		JLabel lblNewLabel = new JLabel("");

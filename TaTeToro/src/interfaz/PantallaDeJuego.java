@@ -91,7 +91,7 @@ public class PantallaDeJuego {
 		frame.getContentPane().add(lblNombreJugador1);
 		
 		
-		JLabel lblGanador = new JLabel("-------------------------");
+		JLabel lblGanador = new JLabel("");
 		lblGanador.setHorizontalAlignment(SwingConstants.LEFT);
 		lblGanador.setBounds(219, 575, 175, 60);
 		frame.getContentPane().add(lblGanador);
