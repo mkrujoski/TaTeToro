@@ -9,6 +9,8 @@ import codigoCliente.Juego;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 //import java.awt.event.WindowEvent;
+import java.io.File;
+import java.io.FileInputStream;
 
 import javax.swing.border.BevelBorder;
 //import java.awt.event.ActionListener;
@@ -29,6 +31,7 @@ public class PantallaDeJuego {
 	private boolean seleccionado7;
 	private boolean seleccionado8;
 	private boolean seleccionado9;
+	static Font font;
 
 	/**
 	 * Launch the application.
@@ -70,6 +73,7 @@ public class PantallaDeJuego {
 		frame.setBounds(680, 130, 600, 700);
 		
 		frame.setUndecorated(true); //borra la barra de arriba
+	
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // To set the action when Frame is closed.
 		frame.getContentPane().setBackground(Color.decode("#93e9ef")); //COLOR DE FONDO
@@ -86,7 +90,7 @@ public class PantallaDeJuego {
 		
 		JLabel lblNombreJugador1 = new JLabel(Juego.getJugador1());
 		lblNombreJugador1.setForeground(Color.BLACK);
-		lblNombreJugador1.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
+		lblNombreJugador1.setFont(getFont());
 		lblNombreJugador1.setBounds(77, 21, 180, 43);
 		frame.getContentPane().add(lblNombreJugador1);
 		
@@ -108,8 +112,8 @@ public class PantallaDeJuego {
 		
 		JLabel lblNombreJugador2 = new JLabel(Juego.getJugador2());
 		lblNombreJugador2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNombreJugador2.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
-		lblNombreJugador2.setBounds(359, 21, 180, 43);
+		lblNombreJugador2.setFont(getFont());
+		lblNombreJugador2.setBounds(353, 21, 180, 43);
 		frame.getContentPane().add(lblNombreJugador2);
 		
 		JLabel lblIconO = new JLabel(""); //Icon que va al lado del nombre del Jugador O
@@ -610,8 +614,7 @@ public class PantallaDeJuego {
 		lblDecoracionFondo.setIcon(imagenesDelTablero.fondoTablero);
 		lblDecoracionFondo.setBounds(0, 0, 600, 700);
 		frame.getContentPane().add(lblDecoracionFondo);
-				
-		
+			
 	}
 	
 	
@@ -792,7 +795,18 @@ public class PantallaDeJuego {
 			return X;
 		return O;	
 	}
-		public JFrame getFrame() {
+	
+	static Font getFont() {
+		try {
+		  font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File ("Anthology-SansDEMO.ttf"))).deriveFont(Font.PLAIN, 19);
+		}	
+		catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return font;
+	}
+	
+	public JFrame getFrame() {
 		return frame;
 	}
 }
