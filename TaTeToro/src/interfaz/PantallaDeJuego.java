@@ -17,7 +17,6 @@ import javax.swing.border.BevelBorder;
 public class PantallaDeJuego {
 
 	private JFrame frame;
-	private Imagenes imagenesDelTablero;
 	private ImageIcon X;
 	private ImageIcon O;
 	private boolean seleccionado1;
@@ -33,24 +32,13 @@ public class PantallaDeJuego {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PantallaDeJuego window = new PantallaDeJuego();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+
 
 	/**
 	 * Create the application.
 	 */
-	public PantallaDeJuego() {
-		initialize();	
+	public PantallaDeJuego(Juego juego,Imagenes imagenes) {
+		initialize(juego,imagenes);	
 	}
 	
 	
@@ -58,10 +46,7 @@ public class PantallaDeJuego {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize() { //frame del fondo principal
-		Juego juego = new Juego();
-		
-		imagenesDelTablero = new Imagenes();
+	private void initialize(Juego juego,Imagenes imagenes) { //frame del fondo principal
 		
 		frame = new JFrame();
 		frame.setTitle("Ta-te-toro");
@@ -76,8 +61,8 @@ public class PantallaDeJuego {
 		
 		
 		
-		X = imagenesDelTablero.x;
-		O = imagenesDelTablero.o;
+		X = imagenes.x;
+		O = imagenes.o;
 	
 		
 		frame.getContentPane().setLayout(null);
@@ -98,11 +83,11 @@ public class PantallaDeJuego {
 		
 		JLabel Tablero = new JLabel("");  
 		Tablero.setBounds(121, 181, 372, 373);
-		Tablero.setIcon(imagenesDelTablero.tablero);
+		Tablero.setIcon(imagenes.tablero);
 		frame.getContentPane().add(Tablero);
 		
 		JLabel lblIconX = new JLabel(""); //Icon que va al lado del nombre del Jugador X
-		lblIconX.setIcon(imagenesDelTablero.iconX);
+		lblIconX.setIcon(imagenes.iconX);
 		lblIconX.setBounds(21, 21, 46, 43);
 		frame.getContentPane().add(lblIconX);
 		
@@ -113,25 +98,33 @@ public class PantallaDeJuego {
 		frame.getContentPane().add(lblNombreJugador2);
 		
 		JLabel lblIconO = new JLabel(""); //Icon que va al lado del nombre del Jugador O
-		lblIconO.setIcon(imagenesDelTablero.iconO);
+		lblIconO.setIcon(imagenes.iconO);
 		lblIconO.setBounds(544, 21, 46, 43);
 		frame.getContentPane().add(lblIconO);
 		
 		JLabel lblTurno = new JLabel(""); //ESTE ES EL LABEL DE TURNO:O / TURNO: X
-		lblTurno.setIcon(new ImageIcon(PantallaDeJuego.class.getResource("/imagenesDelFondo/turno X3.png")));
 		lblTurno.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
 		lblTurno.setBounds(234, 102, 131, 43);
 		frame.getContentPane().add(lblTurno);
+		if(juego.getTurnoInicial()=='X') 
+		{
+			lblTurno.setIcon(imagenes.turnoX);
+			
+		}
+		else 
+		{
+			lblTurno.setIcon(imagenes.turnoO);
+		}
 		
 		JButton btnBotonSalir = new JButton(""); 
-		btnBotonSalir.setIcon(imagenesDelTablero.botonSalir);
+		btnBotonSalir.setIcon(imagenes.botonSalir);
 		btnBotonSalir.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnBotonSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
 		btnBotonSalir.setBounds(443, 656, 131, 33);
 		frame.getContentPane().add(btnBotonSalir);
 		
 		JButton btnBotonAtras = new JButton("");
-		btnBotonAtras.setIcon(imagenesDelTablero.botonAtras);
+		btnBotonAtras.setIcon(imagenes.botonAtras);
 		btnBotonAtras.setFont(new Font("Showcard Gothic", Font.PLAIN, 23));
 		btnBotonAtras.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnBotonAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
@@ -188,7 +181,7 @@ public class PantallaDeJuego {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado1 == false) {
 					//panel1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/imagenesDelFondo/X.png")));
-					panel1.setIcon(colocarSimbolo());
+					panel1.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(1);
 					panel1.setHorizontalAlignment(SwingConstants.CENTER);
 					panel1.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -196,30 +189,35 @@ public class PantallaDeJuego {
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X') //cambia la img del ganador
+						if(juego.getTurno()=='X') //cambia la img del ganador
 						{	
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);		
+							lblGanador.setIcon(imagenes.ganadorX);		
 							botonInfo.setVisible(true);
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false); //desaparece el Turno:O
 						}
-					juego.cambiarTurno();
-					if(Juego.getTurno()=='X') //cambia la img de turno
+					else
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+					juego.cambiarTurno();
+					if(juego.getTurno()=='X') //cambia la img de turno
+					{
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
-					}	
+						lblTurno.setIcon(imagenes.turnoO);
+					}
+					}
 					seleccionado1 = true;
 					}
 				}	
@@ -228,38 +226,40 @@ public class PantallaDeJuego {
 		panel2.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado2 == false) {
-					panel2.setIcon(colocarSimbolo());
+					panel2.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(2);
 					panel2.setHorizontalAlignment(SwingConstants.CENTER);
 					panel2.setHorizontalTextPosition(SwingConstants.CENTER);
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X')
+						if(juego.getTurno()=='X')
 						{	
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);
+							lblGanador.setIcon(imagenes.ganadorX);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano X"
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano O"
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false);
 						}
+					else {
 					juego.cambiarTurno();
-					if(Juego.getTurno()=='X')
+					if(juego.getTurno()=='X')
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
+						lblTurno.setIcon(imagenes.turnoO);
+					}
 					}
 					seleccionado2 = true;
 				}
@@ -273,40 +273,43 @@ public class PantallaDeJuego {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado3 == false) {
 					//panel1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/imagenesDelFondo/X.png")));
-					panel3.setIcon(colocarSimbolo());
+					panel3.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(3);
 					panel3.setHorizontalAlignment(SwingConstants.CENTER);
 					panel3.setHorizontalTextPosition(SwingConstants.CENTER);
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X')
+						if(juego.getTurno()=='X')
 						{	
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);
+							lblGanador.setIcon(imagenes.ganadorX);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano X"
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano O"
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false);
 						}
+					else {
 					juego.cambiarTurno();
-					if(Juego.getTurno()=='X')
+					if(juego.getTurno()=='X')
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
+						lblTurno.setIcon(imagenes.turnoO);
+					}
 					}
 					seleccionado3 = true;
+					
 					}
 				}
 		});
@@ -317,39 +320,41 @@ public class PantallaDeJuego {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado4 == false) {
 					//panel1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/imagenesDelFondo/X.png")));
-					panel4.setIcon(colocarSimbolo());
+					panel4.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(4);
 					panel4.setHorizontalAlignment(SwingConstants.CENTER);
 					panel4.setHorizontalTextPosition(SwingConstants.CENTER);
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X')
+						if(juego.getTurno()=='X')
 						{	
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);
+							lblGanador.setIcon(imagenes.ganadorX);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano X"
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano O"
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false);
 						}
+					else {
 					juego.cambiarTurno();
-					if(Juego.getTurno()=='X')
+					if(juego.getTurno()=='X')
 					{
 						
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
+						lblTurno.setIcon(imagenes.turnoO);
+					}
 					}
 					seleccionado4 = true;
 					}
@@ -362,38 +367,40 @@ public class PantallaDeJuego {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado5 == false) {
 					//panel1.setIcon(new ImageIcon(PantallaPrincipal.class.getResource("/imagenesDelFondo/X.png")));
-					panel5.setIcon(colocarSimbolo());
+					panel5.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(5);
 					panel5.setHorizontalAlignment(SwingConstants.CENTER);
 					panel5.setHorizontalTextPosition(SwingConstants.CENTER);
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X')
+						if(juego.getTurno()=='X')
 						{	
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);
+							lblGanador.setIcon(imagenes.ganadorX);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano X"
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano O"
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false);
 						}
+					else {
 					juego.cambiarTurno();
-					if(Juego.getTurno()=='X')
+					if(juego.getTurno()=='X')
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
+						lblTurno.setIcon(imagenes.turnoO);
+					}
 					}
 					seleccionado5 = true;
 					}
@@ -406,39 +413,41 @@ public class PantallaDeJuego {
 		panel6.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado6 == false) {
-					panel6.setIcon(colocarSimbolo());
+					panel6.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(6);
 					panel6.setHorizontalAlignment(SwingConstants.CENTER);
 					panel6.setHorizontalTextPosition(SwingConstants.CENTER);
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X')
+						if(juego.getTurno()=='X')
 						{	
 							
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);
+							lblGanador.setIcon(imagenes.ganadorX);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano X"
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano O"
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false);
 						}
+					else {
 					juego.cambiarTurno();
-					if(Juego.getTurno()=='X')
+					if(juego.getTurno()=='X')
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
+						lblTurno.setIcon(imagenes.turnoO);
+					}
 					}
 					seleccionado6 = true;
 				}
@@ -451,38 +460,40 @@ public class PantallaDeJuego {
 		panel7.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado7 == false) {
-					panel7.setIcon(colocarSimbolo());
+					panel7.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(7);
 					panel7.setHorizontalAlignment(SwingConstants.CENTER);
 					panel7.setHorizontalTextPosition(SwingConstants.CENTER);
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X')
+						if(juego.getTurno()=='X')
 						{	
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);
+							lblGanador.setIcon(imagenes.ganadorX);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano X"
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano O"
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false);
 						}
+					else {
 					juego.cambiarTurno();
-					if(Juego.getTurno()=='X')
+					if(juego.getTurno()=='X')
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
+						lblTurno.setIcon(imagenes.turnoO);
+					}
 					}
 					seleccionado7 = true;
 				}	
@@ -495,39 +506,41 @@ public class PantallaDeJuego {
 		panel8.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado8 == false) {
-					panel8.setIcon(colocarSimbolo());
+					panel8.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(8);
 					panel8.setHorizontalAlignment(SwingConstants.CENTER);
 					panel8.setHorizontalTextPosition(SwingConstants.CENTER);
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X')
+						if(juego.getTurno()=='X')
 						{	
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);
+							lblGanador.setIcon(imagenes.ganadorX);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano X"
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano O"
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false);
 						}
+					else {
 					juego.cambiarTurno();
 					
-					if(Juego.getTurno()=='X')
+					if(juego.getTurno()=='X')
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
+						lblTurno.setIcon(imagenes.turnoO);
+					}
 					}
 					seleccionado8 = true;
 					}
@@ -537,38 +550,40 @@ public class PantallaDeJuego {
 		panel9.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
 				if (Juego.isHabilitado() && seleccionado9 == false) {
-					panel9.setIcon(colocarSimbolo());
+					panel9.setIcon(colocarSimbolo(juego));
 					juego.agregarJugada(9);
 					panel9.setHorizontalAlignment(SwingConstants.CENTER);
 					panel9.setHorizontalTextPosition(SwingConstants.CENTER);
 					if(juego.jugadaGanadora(juego.listaGanadoras())) 
 					{
 						HayGanandor();
-						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), Juego.getTurno(),imagenesDelTablero);
+						CambiarImagen(panel1, panel2, panel3, panel4, panel5, panel6, panel7, panel8, panel9, juego.listaGanadoras(), juego.getTurno(),imagenes);
 						botonInfo.setEnabled(true);
-						if(Juego.getTurno()=='X')
+						if(juego.getTurno()=='X')
 						{	
-							lblGanador.setIcon(imagenesDelTablero.ganadorX);
+							lblGanador.setIcon(imagenes.ganadorX);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano X"
+							juego.setTurnoInicial('O');
 							
 						}
 						else 
 						{
-							lblGanador.setIcon(imagenesDelTablero.ganadorO);
+							lblGanador.setIcon(imagenes.ganadorO);
 							botonInfo.setVisible(true);
-							//lblTurno.setIcon();  Imagen de "Gano O"
+							juego.setTurnoInicial('X');
 						}
 						lblTurno.setVisible(false);
 						}
+					else {
 					juego.cambiarTurno();
-					if(Juego.getTurno()=='X')
+					if(juego.getTurno()=='X')
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoX);
+						lblTurno.setIcon(imagenes.turnoX);
 					}
 					else 
 					{
-						lblTurno.setIcon(imagenesDelTablero.turnoO);
+						lblTurno.setIcon(imagenes.turnoO);
+					}
 					}
 					seleccionado9 = true;
 					}
@@ -590,8 +605,9 @@ public class PantallaDeJuego {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.setVisible(false);
-				Usuarios vent = new Usuarios();
+				Usuarios vent = new Usuarios(juego,imagenes);
 				vent.getFrame().setVisible(true);
+				juego.vaciarJugadas();
 			}
 		});
 		
@@ -599,15 +615,16 @@ public class PantallaDeJuego {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				frame.dispose();
-				Victoria victoria = new Victoria();
+//				frame.dispose();
+				frame.setVisible(false);
+				Victoria victoria = new Victoria(juego, imagenes);
 				victoria.getFrame().setVisible(true);
 			}
 		});
 		
 		
 		JLabel lblDecoracionFondo = new JLabel("");
-		lblDecoracionFondo.setIcon(imagenesDelTablero.fondoTablero);
+		lblDecoracionFondo.setIcon(imagenes.fondoTablero);
 		lblDecoracionFondo.setBounds(0, 0, 600, 700);
 		frame.getContentPane().add(lblDecoracionFondo);
 				
@@ -787,8 +804,8 @@ public class PantallaDeJuego {
 		}
 	}
 	
-	private ImageIcon colocarSimbolo() { //hacer juego.getTurno y no Juego.getTurno (hay que sacar el static)
-		if(Juego.getTurno() == 'X') 
+	private ImageIcon colocarSimbolo(Juego juego) { //hacer juego.getTurno y no Juego.getTurno (hay que sacar el static)
+		if(juego.getTurno() == 'X') 
 			return X;
 		return O;	
 	}

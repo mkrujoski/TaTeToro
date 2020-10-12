@@ -19,6 +19,8 @@ import javax.swing.JInternalFrame;
 import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.border.SoftBevelBorder;
+
+import codigoCliente.Juego;
 //import javax.swing.JTextPane;
 //import java.awt.Canvas;
 //import javax.swing.border.CompoundBorder;
@@ -58,6 +60,8 @@ public class Menu {
 	private void initialize() {
 		frame = new JFrame();
 		
+		Juego juego = new Juego();
+		
 		imagenes = new Imagenes();
 		
 		frame.setBounds(680, 130, 600, 700);
@@ -71,7 +75,7 @@ public class Menu {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.setVisible(false);
-				Usuarios vent = new Usuarios();
+				Usuarios vent = new Usuarios(juego,imagenes);
 				vent.getFrame().setVisible(true);
 			}
 		});
