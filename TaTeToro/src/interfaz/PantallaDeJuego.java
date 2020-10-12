@@ -1,20 +1,13 @@
 package interfaz;
 
-//import java.awt.image.*;
 import java.awt.*;
 import javax.swing.*;
-//import javax.imageio.*;
-//import javax.swing.border.Border;
 import codigoCliente.Juego;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-//import java.awt.event.WindowEvent;
 import java.io.File;
 import java.io.FileInputStream;
-
 import javax.swing.border.BevelBorder;
-//import java.awt.event.ActionListener;
-//import java.awt.event.ActionEvent;
 
 public class PantallaDeJuego {
 
@@ -52,13 +45,10 @@ public class PantallaDeJuego {
 	private void initialize(Juego juego,Imagenes imagenes) { //frame del fondo principal
 		
 		frame = new JFrame();
-		frame.setTitle("Ta-te-toro");
-		frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 31));
 		seleccionado1 = false;
 		frame.setBounds(680, 130, 600, 700);
 		
 		frame.setUndecorated(true); //borra la barra de arriba
-	
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // To set the action when Frame is closed.
 		frame.getContentPane().setBackground(Color.decode("#93e9ef")); //COLOR DE FONDO
@@ -79,6 +69,11 @@ public class PantallaDeJuego {
 		lblNombreJugador1.setBounds(77, 21, 180, 43);
 		frame.getContentPane().add(lblNombreJugador1);
 		
+		JLabel lblNombreJugador2 = new JLabel(Juego.getJugador2());
+		lblNombreJugador2.setFont(getFont());
+		lblNombreJugador2.setBounds(347, 21, 180, 43);
+		lblNombreJugador2.setHorizontalAlignment(SwingConstants.RIGHT);
+		frame.getContentPane().add(lblNombreJugador2);
 		
 		JLabel lblGanador = new JLabel("");
 		lblGanador.setHorizontalAlignment(SwingConstants.LEFT);
@@ -95,15 +90,10 @@ public class PantallaDeJuego {
 		lblIconX.setBounds(21, 21, 46, 43);
 		frame.getContentPane().add(lblIconX);
 		
-		JLabel lblNombreJugador2 = new JLabel(Juego.getJugador2());
-		lblNombreJugador2.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNombreJugador2.setFont(getFont());
-		lblNombreJugador2.setBounds(353, 21, 180, 43);
-		frame.getContentPane().add(lblNombreJugador2);
-		
 		JLabel lblIconO = new JLabel(""); //Icon que va al lado del nombre del Jugador O
+		lblIconO.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblIconO.setIcon(imagenes.iconO);
-		lblIconO.setBounds(544, 21, 46, 43);
+		lblIconO.setBounds(528, 21, 46, 43);
 		frame.getContentPane().add(lblIconO);
 		
 		JLabel lblTurno = new JLabel(""); //ESTE ES EL LABEL DE TURNO:O / TURNO: X
@@ -631,7 +621,8 @@ public class PantallaDeJuego {
 		lblDecoracionFondo.setIcon(imagenes.fondoTablero);
 		lblDecoracionFondo.setBounds(0, 0, 600, 700);
 		frame.getContentPane().add(lblDecoracionFondo);
-			
+				
+		
 	}
 	
 	
@@ -807,12 +798,6 @@ public class PantallaDeJuego {
 		}
 	}
 	
-	private ImageIcon colocarSimbolo(Juego juego) { //hacer juego.getTurno y no Juego.getTurno (hay que sacar el static)
-		if(juego.getTurno() == 'X') 
-			return X;
-		return O;	
-	}
-	
 	static Font getFont() {
 		try {
 		  font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File ("Anthology-SansDEMO.ttf"))).deriveFont(Font.PLAIN, 19);
@@ -823,7 +808,12 @@ public class PantallaDeJuego {
 		return font;
 	}
 	
-	public JFrame getFrame() {
+	private ImageIcon colocarSimbolo(Juego juego) { //hacer juego.getTurno y no Juego.getTurno (hay que sacar el static)
+		if(juego.getTurno() == 'X') 
+			return X;
+		return O;	
+	}
+		public JFrame getFrame() {
 		return frame;
 	}
 }

@@ -80,7 +80,8 @@ public class Usuarios {
 		
 		//IMAGENES
 		//Imagen del Jugador 1.
-		avatarJ1 = new JLabel("?");
+		avatarJ1 = new JLabel("");
+		avatarJ1.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/clipart1853715.png")));
 		avatarJ1.setVerticalAlignment(SwingConstants.BOTTOM);
 		avatarJ1.setHorizontalAlignment(SwingConstants.CENTER);
 		avatarJ1.setBorder(new LineBorder(new Color(102, 204, 255)));
@@ -91,7 +92,8 @@ public class Usuarios {
 		frame.getContentPane().add(avatarJ1);
 		
 		//Imagen del Juagdor 2.
-		JLabel avatarJ2 = new JLabel("?");
+		JLabel avatarJ2 = new JLabel("");
+		avatarJ2.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/clipart1853715.png")));
 		avatarJ2.setVerticalAlignment(SwingConstants.BOTTOM);
 		avatarJ2.setBorder(new LineBorder(new Color(102, 204, 255)));
 		avatarJ2.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 60));

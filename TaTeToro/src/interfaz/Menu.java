@@ -1,30 +1,21 @@
 package interfaz;
 
 import java.awt.EventQueue;
-//import java.awt.Window;
-//import com.jgoodies.common.bean.Bean;
 import javax.swing.JFrame;
-//import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-//import java.awt.event.WindowEvent;
 import javax.swing.JLabel;
-//import java.awt.event.ActionListener;
-//import java.awt.event.ActionEvent;
 import javax.swing.border.BevelBorder;
 import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JInternalFrame;
 import java.awt.Font;
 import javax.swing.ImageIcon;
-import javax.swing.border.SoftBevelBorder;
+import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 import codigoCliente.Juego;
-//import javax.swing.JTextPane;
-//import java.awt.Canvas;
-//import javax.swing.border.CompoundBorder;
-//import javax.swing.border.EmptyBorder;
+
 
 public class Menu {
 
@@ -69,6 +60,46 @@ public class Menu {
 		frame.setUndecorated(true); //borra la barra arriba
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		// ------------ FRAME INTERNO DE SALIR
+		
+				JInternalFrame warning = new JInternalFrame("WARNING");   //FRAME INTERNO DE SALIR
+				warning.setBorder(null);
+				//warning.setBackground(Color.decode("#93e9ef"));
+				warning.setBounds(172, 217, 259, 228); 
+				
+				frame.getContentPane().add(warning);
+				
+				warning.getContentPane().setLayout(null);
+
+				BasicInternalFrameUI ui = (BasicInternalFrameUI)warning.getUI(); //ELIMINA BARRA BARRA FRAME INTERNO
+				ui.setNorthPane(null);
+				
+				JButton btnSi = new JButton("");
+				btnSi.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/botonSi.png")));
+				btnSi.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+				btnSi.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+				btnSi.setBounds(75, 125, 102, 27);
+				warning.getContentPane().add(btnSi);
+				
+				JButton btnNo = new JButton("");
+				btnNo.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/botonNo.png")));
+				btnNo.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+				btnNo.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+				btnNo.setBounds(75, 163, 102, 27);
+				warning.getContentPane().add(btnNo);
+				warning.setVisible(true);
+				
+				
+				JLabel lblBackgroundFrameInterno = new JLabel("");
+				lblBackgroundFrameInterno.setHorizontalAlignment(SwingConstants.CENTER);
+				lblBackgroundFrameInterno.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/backgroundInternalFrame1.png")));
+				lblBackgroundFrameInterno.setBounds(-12, -17, 282, 262);
+				warning.getContentPane().add(lblBackgroundFrameInterno);
+				
+				warning.setVisible(false);
+				
+		//-------------------------------------------------------------------------------------
 	
 		JButton btnJugar = new JButton("");
 		btnJugar.addMouseListener(new MouseAdapter() {
@@ -146,39 +177,26 @@ public class Menu {
 			@Override
 			public void mouseClicked(MouseEvent e) { 
 
+				warning.setVisible(true);
 				btnJugar.setVisible(false);  
 				btnSalir.setVisible(false);
 				btnReglas.setVisible(false);
 				lblBackground.setVisible(false);
 				lblRecuadroBackground.setVisible(false);
 				frame.getContentPane().setBackground(Color.decode("#93e9ef")); 
-								
-				JInternalFrame warning = new JInternalFrame("WARNING");   //FRAME INTERNO DE SALIR
-				//warning.setBackground(Color.decode("#93e9ef"));
-				warning.setBounds(172, 217, 259, 228); 
-				
-				frame.getContentPane().add(warning);
-				warning.getContentPane().setLayout(null);
-			
-				JLabel texto = new JLabel("\u00BFSeguro desea salir?");
-				texto.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 10));
-				texto.setBounds(48, 41, 164, 56);
-				warning.getContentPane().add(texto);
+									
 				
 				
-				JButton btnSi = new JButton("Si");
 				btnSi.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
 						frame.dispose();
 					}
 				});
-				btnSi.setVerticalAlignment(SwingConstants.TOP);
-				btnSi.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-				btnSi.setBounds(77, 107, 85, 21);
-				warning.getContentPane().add(btnSi);
 				
-				JButton btnNo = new JButton("No!");
+				
+				
+				
 				btnNo.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
@@ -190,11 +208,6 @@ public class Menu {
 						warning.dispose();
 					}
 				});
-				btnNo.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-				btnNo.setVerticalAlignment(SwingConstants.TOP);
-				btnNo.setBounds(77, 138, 85, 21);
-				warning.getContentPane().add(btnNo);
-				warning.setVisible(true);
 			}
 		});
 		
@@ -215,26 +228,18 @@ public class Menu {
 		lblRecuadroBackground.setBounds(185, 276, 228, 263);
 		frame.getContentPane().add(lblRecuadroBackground);
 		
-//		JLabel ReglasDelJuego = new JLabel("Esta es una nueva versi\u00F3n del juego Tateti!"
-//				+ " Se trata de un tablero de forma toroidal, la cual agrega cuatro nuevas formas de ganar. Presiona Start para crear tu usuario.");
-//		ReglasDelJuego.setVerticalAlignment(SwingConstants.TOP);
-//		ReglasDelJuego.setHorizontalAlignment(SwingConstants.CENTER);
-//		ReglasDelJuego.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 16));
-//		ReglasDelJuego.setBounds(155, 81, 268, 185);
-//		frame.getContentPane().add(ReglasDelJuego);
-		
 		lblBackground.setBounds(0, 0, 600, 700);
 		//NO BORRAR ESTA LINEA HASTA EL FINAL DEL TP
 		//lblBackground.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/gifBackground.gif")));
 		lblBackground.setIcon(imagenes.backgroundMenu);
 		//lblBackground.setIcon(Imagenes.backgroundMenu);
 		frame.getContentPane().add(lblBackground);
-		
-
 			
 	}
 	
 	public JFrame getFrame() {
 		return frame;
 	}
+
+
 }
