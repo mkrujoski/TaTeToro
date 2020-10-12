@@ -186,21 +186,10 @@ public class Usuarios {
 		
 		GuardarJ1();
 		
-		JButton GuardarJ2 = new JButton("Guardar");
-		GuardarJ2.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Juego.setJugador2(nJugador2.getText());
-				nJugador2.setEditable(false);
-				btnJugar.setVisible(true);
-			}
-		});
-		GuardarJ2.setVerticalAlignment(SwingConstants.TOP);
-		GuardarJ2.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		GuardarJ2.setBounds(416, 366, 118, 21);
-		frame.getContentPane().add(GuardarJ2);
+
 	}
 	
+	//BOTON GUARDAR NOMBRE JUGADOR 1
 	private JButton GuardarJ1() {
 		JButton GuardarJ1 = new JButton("Guardar");
 		GuardarJ1.addMouseListener(new MouseAdapter() {
@@ -216,6 +205,24 @@ public class Usuarios {
 		GuardarJ1.setBounds(416, 144, 118, 21);
 		frame.getContentPane().add(GuardarJ1);
 		return GuardarJ1;
+	}
+	
+	//BOTON GUARDAR NOMBRE JUGADOR 2
+	private JButton GuardarJ2() {
+		JButton GuardarJ2 = new JButton("Guardar");
+		GuardarJ2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Juego.setJugador2(nJugador2.getText());
+				nJugador2.setEditable(false);
+				btnJugar.setVisible(true);
+			}
+		});
+		GuardarJ2.setVerticalAlignment(SwingConstants.TOP);
+		GuardarJ2.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+		GuardarJ2.setBounds(416, 366, 118, 21);
+		frame.getContentPane().add(GuardarJ2);
+		return GuardarJ2;
 	}
 
 	//GETTERS Y SETTERS DEL FRAME
