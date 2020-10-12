@@ -8,11 +8,11 @@ import javax.swing.*;
 import codigoCliente.Juego;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
+//import java.awt.event.WindowEvent;
 
 import javax.swing.border.BevelBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+//import java.awt.event.ActionListener;
+//import java.awt.event.ActionEvent;
 
 public class PantallaDeJuego {
 
