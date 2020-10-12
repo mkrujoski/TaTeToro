@@ -74,7 +74,7 @@ public class Usuarios {
 			}
 		});
 		btnJugar.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		btnJugar.setBounds(243, 627, 131, 33);
+		btnJugar.setBounds(241, 629, 131, 33);
 		frame.getContentPane().add(btnJugar);
 		btnJugar.setVisible(false);
 		
@@ -87,7 +87,7 @@ public class Usuarios {
 		avatarJ1.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 60));
 		avatarJ1.setForeground(new Color(51, 153, 204));
 		avatarJ1.setBackground(SystemColor.activeCaption);
-		avatarJ1.setBounds(243, 150, 119, 108);
+		avatarJ1.setBounds(243, 149, 119, 108);
 		frame.getContentPane().add(avatarJ1);
 		
 		//Imagen del Juagdor 2.
@@ -195,7 +195,7 @@ public class Usuarios {
 			}
 		});
 		elegirJ1.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		elegirJ1.setBounds(253, 269, 99, 33);
+		elegirJ1.setBounds(253, 275, 99, 33);
 		frame.getContentPane().add(elegirJ1);
 		
 		JButton btnSalir = new JButton("");
