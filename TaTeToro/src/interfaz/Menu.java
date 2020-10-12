@@ -84,36 +84,46 @@ public class Menu {
 //				vent.getFrame().setVisible(true);
 ////				pantallaTablero.getFrame().setVisible(true);
 //			}
-//		});
+//		}); 
 		frame.getContentPane().setLayout(null);
 		JButton btnReglas = new JButton("");
 		JButton btnSalir = new JButton("");
 		JLabel lblRecuadroBackground = new JLabel(""); //RECUADRO FONDO
 		JLabel lblBackground = new JLabel(""); //FONDO
-		btnSalir.setIcon(imagenes.botonSalir);
+		
+		
+
+		btnSalir.setIcon(imagenes.botonSalir);   // PERSONALIZACION BOTON SALIR
 		//btnSalir.setIcon(Imagenes.botonSalir);
 		btnSalir.setHorizontalTextPosition(SwingConstants.CENTER);
 		btnSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
 		btnSalir.setBounds(234, 455, 131, 33);
 		frame.getContentPane().add(btnSalir);
-		btnSalir.addMouseListener(new MouseAdapter() {
+		
+		
+		btnSalir.addMouseListener(new MouseAdapter() { //ACCION BOTON SALIR 
 			@Override
 			public void mouseClicked(MouseEvent e) { 
 
-				btnJugar.setVisible(false);
+				btnJugar.setVisible(false);  
 				btnSalir.setVisible(false);
 				btnReglas.setVisible(false);
 				lblBackground.setVisible(false);
 				lblRecuadroBackground.setVisible(false);
-				JInternalFrame Warning = new JInternalFrame("New JInternalFrame");
-				Warning.setBounds(172, 217, 259, 228);
-				frame.getContentPane().add(Warning);
-				Warning.getContentPane().setLayout(null);
+				frame.getContentPane().setBackground(Color.decode("#93e9ef")); 
+								
+				JInternalFrame warning = new JInternalFrame("WARNING");   //FRAME INTERNO DE SALIR
+				//warning.setBackground(Color.decode("#93e9ef"));
+				warning.setBounds(172, 217, 259, 228); 
 				
+				frame.getContentPane().add(warning);
+				warning.getContentPane().setLayout(null);
+			
 				JLabel texto = new JLabel("\u00BFSeguro desea salir?");
-				texto.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+				texto.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 10));
 				texto.setBounds(48, 41, 164, 56);
-				Warning.getContentPane().add(texto);
+				warning.getContentPane().add(texto);
+				
 				
 				JButton btnSi = new JButton("Si");
 				btnSi.addMouseListener(new MouseAdapter() {
@@ -125,7 +135,7 @@ public class Menu {
 				btnSi.setVerticalAlignment(SwingConstants.TOP);
 				btnSi.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
 				btnSi.setBounds(77, 107, 85, 21);
-				Warning.getContentPane().add(btnSi);
+				warning.getContentPane().add(btnSi);
 				
 				JButton btnNo = new JButton("No!");
 				btnNo.addMouseListener(new MouseAdapter() {
@@ -136,16 +146,18 @@ public class Menu {
 						btnReglas.setVisible(true);
 						lblBackground.setVisible(true);
 						lblRecuadroBackground.setVisible(true);
-						Warning.dispose();
+						warning.dispose();
 					}
 				});
 				btnNo.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
 				btnNo.setVerticalAlignment(SwingConstants.TOP);
 				btnNo.setBounds(77, 138, 85, 21);
-				Warning.getContentPane().add(btnNo);
-				Warning.setVisible(true);
+				warning.getContentPane().add(btnNo);
+				warning.setVisible(true);
 			}
 		});
+		
+		
 		frame.getContentPane().add(btnJugar);
 		
 		

@@ -3,6 +3,8 @@ package interfaz;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JTextField;
@@ -20,6 +22,11 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+import javax.swing.UIManager;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.LineBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Usuarios {
 
@@ -29,6 +36,8 @@ public class Usuarios {
 	private JTextField nJugador2;
 	public static JFileChooser fc = new JFileChooser();
 	public File file;
+	public Imagenes img;
+	private JLabel avatarJ1;
 
 	//CREA LA APLICACION
 	public Usuarios() {
@@ -42,19 +51,20 @@ public class Usuarios {
 		frame = new JFrame();
 		frame.getContentPane().setBackground(SystemColor.info);
 		frame.setBounds(680, 130, 600, 700); //Mismo tamaño en todas las ventanas.
+		frame.setUndecorated(true); //borra la barra de arriba
+		frame.getContentPane().setBackground(Color.decode("#93e9ef")); //COLOR DE FONDO
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		Imagenes img = new Imagenes();
 		
-		//TITULO DE LA VENTANA
-		JLabel titulo = DefaultComponentFactory.getInstance().createTitle("Ingrese un nombre de usuario "
-				+ "y una imagen o avatar para cada jugador.");
-		titulo.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		titulo.setBounds(19, 23, 567, 41);
-		frame.getContentPane().add(titulo);
-		
 		//BOTONES
-		JButton btnJugar = new JButton("Jugar!");
+		JButton btnJugar = new JButton("");
+		btnJugar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnJugar.setIcon(img.botonJugar);
+		btnJugar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, SystemColor.desktop));
 		btnJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -63,33 +73,38 @@ public class Usuarios {
 				vent.getFrame().setVisible(true);
 			}
 		});
-		btnJugar.setVerticalAlignment(SwingConstants.TOP);
 		btnJugar.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		btnJugar.setBounds(245, 576, 96, 21);
+		btnJugar.setBounds(243, 627, 131, 33);
 		frame.getContentPane().add(btnJugar);
 		btnJugar.setVisible(false);
 		
 		//IMAGENES
 		//Imagen del Jugador 1.
-		JLabel avatarJ1 = new JLabel("Jugador 1");
-		avatarJ1.setFont(new Font("Showcard Gothic", Font.BOLD, 15));
+		avatarJ1 = new JLabel("?");
+		avatarJ1.setVerticalAlignment(SwingConstants.BOTTOM);
 		avatarJ1.setHorizontalAlignment(SwingConstants.CENTER);
-		avatarJ1.setForeground(SystemColor.activeCaption);
+		avatarJ1.setBorder(new LineBorder(new Color(102, 204, 255)));
+		avatarJ1.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 60));
+		avatarJ1.setForeground(new Color(51, 153, 204));
 		avatarJ1.setBackground(SystemColor.activeCaption);
-		avatarJ1.setBounds(231, 202, 119, 108);
+		avatarJ1.setBounds(243, 150, 119, 108);
 		frame.getContentPane().add(avatarJ1);
 		
 		//Imagen del Juagdor 2.
-		JLabel avatarJ2 = new JLabel("Jugador 2");
-		avatarJ2.setFont(new Font("Showcard Gothic", Font.BOLD, 15));
+		JLabel avatarJ2 = new JLabel("?");
+		avatarJ2.setVerticalAlignment(SwingConstants.BOTTOM);
+		avatarJ2.setBorder(new LineBorder(new Color(102, 204, 255)));
+		avatarJ2.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 60));
 		avatarJ2.setHorizontalAlignment(SwingConstants.CENTER);
-		avatarJ2.setForeground(SystemColor.activeCaption);
+		avatarJ2.setForeground(new Color(51, 153, 204));
 		avatarJ2.setBackground(SystemColor.activeCaption);
-		avatarJ2.setBounds(231, 432, 119, 108);
+		avatarJ2.setBounds(243, 446, 119, 108);
 		frame.getContentPane().add(avatarJ2);
 		
 		//Crea la barra editable donde el jugador 1 escribe su nombre de usuario.
 		nJugador1 = new JTextField();
+		nJugador1.setBounds(186, 108, 223, 31);
+		frame.getContentPane().add(nJugador1);
 		nJugador1.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -97,13 +112,14 @@ public class Usuarios {
 				nJugador2.setEditable(true);
 			}
 		});
-		nJugador1.setBounds(174, 139, 223, 31);
-		frame.getContentPane().add(nJugador1);
-		nJugador1.setColumns(10);
+		//nJugador1.setColumns(10);
 		
 		//Crea la barra editable donde el jugador 2 escribe su nombre de usuario.		
 		nJugador2 = new JTextField();
-		nJugador2.setEditable(false);
+	//	nJugador2.setEditable(false);
+		//nJugador2.setColumns(10);
+		nJugador2.setBounds(186, 397, 223, 31);
+		frame.getContentPane().add(nJugador2);
 		nJugador2.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
@@ -111,11 +127,10 @@ public class Usuarios {
 				btnJugar.setVisible(true);
 			}
 		});
-		nJugador2.setColumns(10);
-		nJugador2.setBounds(174, 361, 223, 31);
-		frame.getContentPane().add(nJugador2);
 		
-		JButton btnAtras = new JButton("Atras");
+		JButton btnAtras = new JButton("");
+		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, SystemColor.desktop));
+		btnAtras.setIcon(img.botonAtras);
 		btnAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -125,11 +140,12 @@ public class Usuarios {
 			}
 		});
 		btnAtras.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		btnAtras.setVerticalAlignment(SwingConstants.TOP);
-		btnAtras.setBounds(245, 611, 95, 21);
+		btnAtras.setBounds(19, 656, 131, 33);
 		frame.getContentPane().add(btnAtras);
 		
-		JButton elegirJ2 = new JButton("Elegir");
+		JButton elegirJ2 = new JButton("");
+		elegirJ2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+		elegirJ2.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/botonElegir1.png")));
 		elegirJ2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -151,12 +167,13 @@ public class Usuarios {
 	                }
 			}
 		});
-		elegirJ2.setVerticalAlignment(SwingConstants.TOP);
 		elegirJ2.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		elegirJ2.setBounds(416, 475, 85, 21);
+		elegirJ2.setBounds(253, 567, 99, 33);
 		frame.getContentPane().add(elegirJ2);
 		
-		JButton elegirJ1 = new JButton("Elegir");
+		JButton elegirJ1 = new JButton("");
+		elegirJ1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+		elegirJ1.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/botonElegir1.png")));
 		elegirJ1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -177,26 +194,30 @@ public class Usuarios {
 	                }
 			}
 		});
-		elegirJ1.setVerticalAlignment(SwingConstants.TOP);
 		elegirJ1.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		elegirJ1.setBounds(416, 245, 85, 21);
+		elegirJ1.setBounds(253, 269, 99, 33);
 		frame.getContentPane().add(elegirJ1);
 		
-		JLabel Jugador1 = new JLabel("Jugador 1");
-		Jugador1.setHorizontalAlignment(SwingConstants.CENTER);
-		Jugador1.setFont(new Font("Showcard Gothic", Font.PLAIN, 18));
-		Jugador1.setBounds(222, 98, 118, 31);
-		frame.getContentPane().add(Jugador1);
+		JButton btnSalir = new JButton("");
+		btnSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+		btnSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, SystemColor.desktop));
+		btnSalir.setBounds(455, 656, 131, 33);
+		btnSalir.setIcon(img.botonSalir);
+		frame.getContentPane().add(btnSalir);
 		
-		JLabel Jugador2 = new JLabel("Jugador 2");
-		Jugador2.setHorizontalAlignment(SwingConstants.CENTER);
-		Jugador2.setFont(new Font("Showcard Gothic", Font.PLAIN, 18));
-		Jugador2.setBounds(222, 320, 119, 31);
-		frame.getContentPane().add(Jugador2);
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/fondoUsuario.png")));
+		lblNewLabel.setBounds(0, 0, 600, 718);
+		frame.getContentPane().add(lblNewLabel);
 		
-		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("");
-		lblNewJgoodiesLabel.setBounds(32, 29, 519, 31);
-		frame.getContentPane().add(lblNewJgoodiesLabel);
+		btnSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				frame.dispose();
+			}
+		});
+		
 	}
 
 	//GETTERS Y SETTERS DEL FRAME
