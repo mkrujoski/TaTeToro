@@ -8,7 +8,6 @@ import javax.swing.*;
 import codigoCliente.Juego;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
 
 import javax.swing.border.BevelBorder;
 
@@ -90,9 +89,10 @@ public class PantallaDeJuego {
 		frame.getContentPane().add(Tablero);
 		
 		JLabel lblNombreJugador1 = new JLabel(Juego.getJugador1());
+		lblNombreJugador1.setHorizontalAlignment(SwingConstants.LEFT);
 		lblNombreJugador1.setForeground(Color.BLACK);
 		lblNombreJugador1.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
-		lblNombreJugador1.setBounds(77, 21, 138, 43);
+		lblNombreJugador1.setBounds(77, 21, 214, 43);
 		frame.getContentPane().add(lblNombreJugador1);
 		
 		JLabel lblIconX = new JLabel(""); //Icon que va al lado del nombre del Jugador X
@@ -101,13 +101,14 @@ public class PantallaDeJuego {
 		frame.getContentPane().add(lblIconX);
 		
 		JLabel lblNombreJugador2 = new JLabel(Juego.getJugador2());
+		lblNombreJugador2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNombreJugador2.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
-		lblNombreJugador2.setBounds(473, 21, 138, 43);
+		lblNombreJugador2.setBounds(315, 21, 203, 43);
 		frame.getContentPane().add(lblNombreJugador2);
 		
 		JLabel lblIconO = new JLabel(""); //Icon que va al lado del nombre del Jugador O
 		lblIconO.setIcon(imagenesDelTablero.iconO);
-		lblIconO.setBounds(417, 21, 46, 43);
+		lblIconO.setBounds(528, 21, 46, 43);
 		frame.getContentPane().add(lblIconO);
 		
 		JLabel lblTurno = new JLabel(""); //ESTE ES EL LABEL DE TURNO:O / TURNO: X

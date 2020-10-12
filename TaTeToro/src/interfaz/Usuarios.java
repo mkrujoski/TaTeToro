@@ -6,10 +6,7 @@ import javax.swing.JOptionPane;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JTextField;
-//import com.jgoodies.forms.factories.DefaultComponentFactory;
 import codigoCliente.Juego;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.SystemColor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,6 +17,8 @@ import java.awt.event.MouseEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
 import com.jgoodies.forms.factories.DefaultComponentFactory;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Usuarios {
 
@@ -49,8 +48,9 @@ public class Usuarios {
 		//TITULO DE LA VENTANA
 		JLabel titulo = DefaultComponentFactory.getInstance().createTitle("Ingrese un nombre de usuario "
 				+ "y una imagen o avatar para cada jugador.");
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		titulo.setBounds(19, 23, 567, 41);
+		titulo.setBounds(10, 23, 566, 41);
 		frame.getContentPane().add(titulo);
 		
 		//BOTONES
@@ -90,13 +90,6 @@ public class Usuarios {
 		
 		//Crea la barra editable donde el jugador 1 escribe su nombre de usuario.
 		nJugador1 = new JTextField();
-		nJugador1.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				Juego.setJugador1(nJugador1.getText());
-				nJugador2.setEditable(true);
-			}
-		});
 		nJugador1.setBounds(174, 139, 223, 31);
 		frame.getContentPane().add(nJugador1);
 		nJugador1.setColumns(10);
@@ -104,13 +97,6 @@ public class Usuarios {
 		//Crea la barra editable donde el jugador 2 escribe su nombre de usuario.		
 		nJugador2 = new JTextField();
 		nJugador2.setEditable(false);
-		nJugador2.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				Juego.setJugador2(nJugador2.getText());
-				btnJugar.setVisible(true);
-			}
-		});
 		nJugador2.setColumns(10);
 		nJugador2.setBounds(174, 361, 223, 31);
 		frame.getContentPane().add(nJugador2);
@@ -197,6 +183,39 @@ public class Usuarios {
 		JLabel lblNewJgoodiesLabel = DefaultComponentFactory.getInstance().createLabel("");
 		lblNewJgoodiesLabel.setBounds(32, 29, 519, 31);
 		frame.getContentPane().add(lblNewJgoodiesLabel);
+		
+		GuardarJ1();
+		
+		JButton GuardarJ2 = new JButton("Guardar");
+		GuardarJ2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Juego.setJugador2(nJugador2.getText());
+				nJugador2.setEditable(false);
+				btnJugar.setVisible(true);
+			}
+		});
+		GuardarJ2.setVerticalAlignment(SwingConstants.TOP);
+		GuardarJ2.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+		GuardarJ2.setBounds(416, 366, 118, 21);
+		frame.getContentPane().add(GuardarJ2);
+	}
+	
+	private JButton GuardarJ1() {
+		JButton GuardarJ1 = new JButton("Guardar");
+		GuardarJ1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Juego.setJugador1(nJugador1.getText());
+				nJugador1.setEditable(false);
+				nJugador2.setEditable(true);
+			}
+		});
+		GuardarJ1.setVerticalAlignment(SwingConstants.TOP);
+		GuardarJ1.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+		GuardarJ1.setBounds(416, 144, 118, 21);
+		frame.getContentPane().add(GuardarJ1);
+		return GuardarJ1;
 	}
 
 	//GETTERS Y SETTERS DEL FRAME
