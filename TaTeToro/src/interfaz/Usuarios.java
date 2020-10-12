@@ -215,7 +215,7 @@ public class Usuarios {
 			public void mouseClicked(MouseEvent e) {
 				Juego.setJugador2(nJugador2.getText());
 				nJugador2.setEditable(false);
-				btnJugar.setVisible(true);
+//				btnJugar.setVisible(true);
 			}
 		});
 		GuardarJ2.setVerticalAlignment(SwingConstants.TOP);
