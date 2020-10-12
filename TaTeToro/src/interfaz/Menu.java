@@ -17,6 +17,8 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JInternalFrame;
 import java.awt.Font;
+//import javax.swing.JTextPane;
+//import java.awt.Canvas;
 //import javax.swing.border.CompoundBorder;
 //import javax.swing.border.EmptyBorder;
 
@@ -76,20 +78,52 @@ public class Menu {
 		//btnJugar.setIcon(Imagenes.botonJugar);
 		btnJugar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
 		btnJugar.setBounds(234, 333, 131, 33);
-//		btnJugar.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent arg0) {
-//				frame.setVisible(false);
-//				Usuarios vent = new Usuarios();
-//				vent.getFrame().setVisible(true);
-////				pantallaTablero.getFrame().setVisible(true);
-//			}
-//		}); 
-		frame.getContentPane().setLayout(null);
-		JButton btnReglas = new JButton("");
+
 		JButton btnSalir = new JButton("");
 		JLabel lblRecuadroBackground = new JLabel(""); //RECUADRO FONDO
 		JLabel lblBackground = new JLabel(""); //FONDO
+		JButton btnOk = new JButton("Ok");
+		btnOk.setVisible(false);
+		
+		btnOk.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+		btnOk.setVerticalAlignment(SwingConstants.TOP);
+		btnOk.setBounds(262, 605, 85, 21);
+		frame.getContentPane().add(btnOk);
+		
+		
+		JLabel Reglas = new JLabel("Esta es una nueva versi\u00F3n del juego Tateti! Se trata de un tablero de forma toroidal* , "
+				+ "la cual agrega cuatro nuevas formas de ganar. Presiona Start para crear tu usuario.");
+		Reglas.setBounds(58, 297, 491, 356);
+		frame.getContentPane().add(Reglas);
+		Reglas.setVisible(false);
+		frame.getContentPane().setLayout(null);
+		
+		JButton btnReglas = new JButton("");
+		btnReglas.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblRecuadroBackground.setVisible(false);
+				btnSalir.setVisible(false);
+				btnJugar.setVisible(false);
+				btnReglas.setVisible(false);
+				Reglas.setVisible(true);
+				btnOk.setVisible(true);
+				
+				btnOk.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseClicked(MouseEvent e) {
+						lblRecuadroBackground.setVisible(true);
+						btnSalir.setVisible(true);
+						btnJugar.setVisible(true);
+						btnReglas.setVisible(true);
+						Reglas.setVisible(false);
+						btnOk.setVisible(false);
+					}
+				});
+			}
+		});
+		
+		
 		
 		
 
@@ -174,6 +208,13 @@ public class Menu {
 		lblRecuadroBackground.setBounds(185, 276, 228, 263);
 		frame.getContentPane().add(lblRecuadroBackground);
 		
+//		JLabel ReglasDelJuego = new JLabel("Esta es una nueva versi\u00F3n del juego Tateti!"
+//				+ " Se trata de un tablero de forma toroidal, la cual agrega cuatro nuevas formas de ganar. Presiona Start para crear tu usuario.");
+//		ReglasDelJuego.setVerticalAlignment(SwingConstants.TOP);
+//		ReglasDelJuego.setHorizontalAlignment(SwingConstants.CENTER);
+//		ReglasDelJuego.setFont(new Font("Serif", Font.BOLD | Font.ITALIC, 16));
+//		ReglasDelJuego.setBounds(155, 81, 268, 185);
+//		frame.getContentPane().add(ReglasDelJuego);
 		
 		lblBackground.setBounds(0, 0, 600, 700);
 		//NO BORRAR ESTA LINEA HASTA EL FINAL DEL TP
@@ -181,6 +222,8 @@ public class Menu {
 		lblBackground.setIcon(imagenes.backgroundMenu);
 		//lblBackground.setIcon(Imagenes.backgroundMenu);
 		frame.getContentPane().add(lblBackground);
+		
+
 			
 	}
 	

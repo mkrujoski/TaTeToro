@@ -10,8 +10,8 @@ import java.awt.Image;
 import javax.swing.JTextField;
 //import com.jgoodies.forms.factories.DefaultComponentFactory;
 import codigoCliente.Juego;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
+//import java.awt.event.KeyAdapter;
+//import java.awt.event.KeyEvent;
 import java.awt.SystemColor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -104,29 +104,15 @@ public class Usuarios {
 		//Crea la barra editable donde el jugador 1 escribe su nombre de usuario.
 		nJugador1 = new JTextField();
 		nJugador1.setBounds(186, 108, 223, 31);
+		nJugador1.setColumns(10);
 		frame.getContentPane().add(nJugador1);
-		nJugador1.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				Juego.setJugador1(nJugador1.getText());
-				nJugador2.setEditable(true);
-			}
-		});
-		//nJugador1.setColumns(10);
 		
 		//Crea la barra editable donde el jugador 2 escribe su nombre de usuario.		
 		nJugador2 = new JTextField();
-	//	nJugador2.setEditable(false);
-		//nJugador2.setColumns(10);
+		nJugador2.setEditable(false);
+		nJugador2.setColumns(10);
 		nJugador2.setBounds(186, 397, 223, 31);
 		frame.getContentPane().add(nJugador2);
-		nJugador2.addKeyListener(new KeyAdapter() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				Juego.setJugador2(nJugador2.getText());
-				btnJugar.setVisible(true);
-			}
-		});
 		
 		JButton btnAtras = new JButton("");
 		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, SystemColor.desktop));
@@ -205,6 +191,38 @@ public class Usuarios {
 		btnSalir.setIcon(img.botonSalir);
 		frame.getContentPane().add(btnSalir);
 		
+        JButton GuardarJ2 = new JButton("Guardar");
+        GuardarJ2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Juego.setJugador2(nJugador2.getText());
+                nJugador2.setEditable(false);
+                btnJugar.setVisible(true);
+                GuardarJ2.setEnabled(false);
+            }
+        });
+        GuardarJ2.setVerticalAlignment(SwingConstants.TOP);
+        GuardarJ2.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+        GuardarJ2.setBounds(419, 400, 118, 21);
+        frame.getContentPane().add(GuardarJ2);
+		      
+        
+		        
+		JButton GuardarJ1 = new JButton("Guardar");
+		GuardarJ1.addMouseListener(new MouseAdapter() {
+		    @Override
+		    public void mouseClicked(MouseEvent e) {
+		        Juego.setJugador1(nJugador1.getText());
+		        nJugador1.setEditable(false);
+		        nJugador2.setEditable(true);
+		        GuardarJ1.setEnabled(false);
+		    }
+		});
+		GuardarJ1.setVerticalAlignment(SwingConstants.TOP);
+		GuardarJ1.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
+		GuardarJ1.setBounds(419, 111, 118, 21);
+		frame.getContentPane().add(GuardarJ1);
+		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/fondoUsuario.png")));
@@ -217,7 +235,6 @@ public class Usuarios {
 				frame.dispose();
 			}
 		});
-		
 	}
 
 	//GETTERS Y SETTERS DEL FRAME
