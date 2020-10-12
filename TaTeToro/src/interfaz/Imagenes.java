@@ -1,5 +1,10 @@
 package interfaz;
 
+import java.awt.Font;
+import java.awt.FontFormatException;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.ImageIcon;
 
 // despues decidir si hacer esta clase static o public
@@ -24,8 +29,11 @@ import javax.swing.ImageIcon;
 	public ImageIcon iconO;
 	public ImageIcon ImagenJ1;
 	public ImageIcon ImagenJ2;
+	public ImageIcon ganadorX;
+	public ImageIcon ganadorO;
+	public Font font;
 	
-	Imagenes(){
+	Imagenes() {
 		//backgroundMenu = new ImageIcon ("/imagenesDelFondo/gifBackground.gif");
 		backgroundMenu = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/gifBackground.gif"));
 		recuadroBackgroundMenu = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/recuadroBackground.png"));
@@ -35,7 +43,7 @@ import javax.swing.ImageIcon;
 		botonAtras = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/botonAtras.png"));
 //-------------------------------------
 		tablero = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/tablero.png"));
-		fondoTablero = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/fondoTablero.png"));
+		fondoTablero = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/fondoTablero.gif"));
 		x = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/Xr.png"));
 		o = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/oa2.png"));		
 		turnoO = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/turno O3.png"));
@@ -44,7 +52,13 @@ import javax.swing.ImageIcon;
 		iconO = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/scoreO.png"));
 		x_ganadora = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/XGanadora.png"));
 		o_ganadora = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/OGanadora.png"));
+		ganadorX = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/ganadorX.png"));
+		ganadorO = new ImageIcon(Imagenes.class.getResource("/imagenesDelFondo/ganadorO.png"));
+//		File font_file = new File("Anthology-SansDEMO.ttf");
+//		Font font = Font.createFont(0, font_file);
 	}
+	
+	
 	public void setImagenJugador1(String path) {
 		
         ImagenJ1 = new ImageIcon(path);

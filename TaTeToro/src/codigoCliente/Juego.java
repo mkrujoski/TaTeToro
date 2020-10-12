@@ -8,12 +8,13 @@ public class Juego {
 	private static String Jugador2;
 	private Integer scoreJugador1; 
 	private Integer scoreJugador2;
+
 	
 	public Juego() {
 	
 		turno = 'X';
 		habilitado = true;
-		scoreJugador1 = 0; scoreJugador2 = 0;
+//		scoreJugador1 = 0; scoreJugador2 = 0;
 		tablero = new char[3][3];
 		for (int i = 0; i < tablero.length; i++) {
 			for (int j = 0; j < tablero.length; j++) {
