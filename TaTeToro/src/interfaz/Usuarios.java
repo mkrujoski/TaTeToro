@@ -40,12 +40,12 @@ public class Usuarios {
 	private JLabel avatarJ1;
 
 	//CREA LA APLICACION
-	public Usuarios() {
-		initialize();
+	public Usuarios(Juego juego, Imagenes imagenes) {
+		initialize(juego,imagenes);
 	}
 
 	//INICIALIZA EL CONTENIDO DEL FRAME
-	private void initialize() {
+	private void initialize(Juego juego, Imagenes imagenes) {
 		
 		//VENTANA DE USUARIOS
 		frame = new JFrame();
@@ -55,7 +55,7 @@ public class Usuarios {
 		frame.getContentPane().setBackground(Color.decode("#93e9ef")); //COLOR DE FONDO
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		Imagenes img = new Imagenes();
+		
 		
 		//BOTONES
 		JButton btnJugar = new JButton("");
@@ -63,13 +63,13 @@ public class Usuarios {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnJugar.setIcon(img.botonJugar);
+		btnJugar.setIcon(imagenes.botonJugar);
 		btnJugar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, SystemColor.desktop));
 		btnJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				frame.dispose();
-				PantallaDeJuego vent = new PantallaDeJuego();
+				PantallaDeJuego vent = new PantallaDeJuego(juego,imagenes);
 				vent.getFrame().setVisible(true);
 			}
 		});
@@ -116,7 +116,7 @@ public class Usuarios {
 		
 		JButton btnAtras = new JButton("");
 		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, SystemColor.desktop));
-		btnAtras.setIcon(img.botonAtras);
+		btnAtras.setIcon(imagenes.botonAtras);
 		btnAtras.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -141,7 +141,7 @@ public class Usuarios {
 	                if(JFileChooser.APPROVE_OPTION == resultado) {
 	                    file = fc.getSelectedFile();
 	                    try {
-	                    	img.setImagenJugador2(file.toString());
+	                    	imagenes.setImagenJugador2(file.toString());
 	                        ImageIcon icon = new ImageIcon(file.toString());
 	                        Icon icono = new ImageIcon(icon.getImage().getScaledInstance(avatarJ2.getWidth(), avatarJ2.getHeight(), Image.SCALE_DEFAULT));
 	                        avatarJ2.setText(null);
@@ -168,7 +168,7 @@ public class Usuarios {
 	                if(JFileChooser.APPROVE_OPTION == resultado) {
 	                    file = fc.getSelectedFile();
 	                    try {
-	                    	img.setImagenJugador1(file.toString());
+	                    	imagenes.setImagenJugador1(file.toString());
 	                        ImageIcon icon = new ImageIcon(file.toString());
 	                        Icon icono = new ImageIcon(icon.getImage().getScaledInstance(avatarJ1.getWidth(), avatarJ1.getHeight(), Image.SCALE_DEFAULT));
 	                        avatarJ1.setText(null);
@@ -188,7 +188,7 @@ public class Usuarios {
 		btnSalir.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
 		btnSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, SystemColor.desktop));
 		btnSalir.setBounds(455, 656, 131, 33);
-		btnSalir.setIcon(img.botonSalir);
+		btnSalir.setIcon(imagenes.botonSalir);
 		frame.getContentPane().add(btnSalir);
 		
         JButton GuardarJ2 = new JButton("");
