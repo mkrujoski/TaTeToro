@@ -1,9 +1,5 @@
 package logica;
 
-import java.awt.Font;
-import java.io.File;
-import java.io.FileInputStream;
-
 public class Juego {
 	private static char turno;
 	private static char turnoInicial;

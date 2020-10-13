@@ -1,7 +1,6 @@
 package interfaz;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;

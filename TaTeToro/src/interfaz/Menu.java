@@ -1,6 +1,5 @@
 package interfaz;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -11,7 +10,6 @@ import java.awt.Color;
 import javax.swing.SwingConstants;
 import javax.swing.JInternalFrame;
 import java.awt.Font;
-import javax.swing.ImageIcon;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 import logica.Juego;
@@ -20,7 +18,6 @@ import logica.Juego;
 public class Menu {
 
 	private JFrame frame;
-	private HerramientasGraficas imagenes;
 
 
 	public Menu() {

@@ -23,9 +23,6 @@ import javax.swing.border.LineBorder;
 
 import logica.Juego;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class Usuarios {
 
 	//VARIABLES
