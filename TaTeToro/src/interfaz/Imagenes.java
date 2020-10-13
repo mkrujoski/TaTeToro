@@ -76,8 +76,12 @@ import javax.swing.ImageIcon;
 		fondoSalida = new ImageIcon(Imagenes.class.getResource("/backgroundInternalFrame1.png"));
 		instrucciones = new ImageIcon(Imagenes.class.getResource("/instrucciones1.png"));
 		
-//		File font_file = new File("Anthology-SansDEMO.ttf");
-//		Font font = Font.createFont(0, font_file);
+
+	}
+	
+	public void reseteo(ImageIcon imagen) 
+	{
+		imagen = new ImageIcon(Imagenes.class.getResource("/incognita.png"));
 	}
 	
 	

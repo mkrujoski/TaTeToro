@@ -1,4 +1,4 @@
-package codigoCliente;
+package Logica;
 
 public class Juego {
 	private static char turno;
