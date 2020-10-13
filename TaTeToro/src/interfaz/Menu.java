@@ -76,14 +76,14 @@ public class Menu {
 				ui.setNorthPane(null);
 				
 				JButton btnSi = new JButton("");
-				btnSi.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/botonSi.png")));
+				btnSi.setIcon(imagenes.botonSi);
 				btnSi.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
 				btnSi.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
 				btnSi.setBounds(75, 125, 102, 27);
 				warning.getContentPane().add(btnSi);
 				
 				JButton btnNo = new JButton("");
-				btnNo.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/botonNo.png")));
+				btnNo.setIcon(imagenes.botonNo);
 				btnNo.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
 				btnNo.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
 				btnNo.setBounds(75, 163, 102, 27);
@@ -93,7 +93,7 @@ public class Menu {
 				
 				JLabel lblBackgroundFrameInterno = new JLabel("");
 				lblBackgroundFrameInterno.setHorizontalAlignment(SwingConstants.CENTER);
-				lblBackgroundFrameInterno.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/backgroundInternalFrame1.png")));
+				lblBackgroundFrameInterno.setIcon(imagenes.fondoSalida);
 				lblBackgroundFrameInterno.setBounds(-12, -17, 282, 262);
 				warning.getContentPane().add(lblBackgroundFrameInterno);
 				
@@ -121,7 +121,7 @@ public class Menu {
 		JLabel lblBackground = new JLabel(""); //FONDO
 		JButton btnAtras = new JButton("");
 		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-		btnAtras.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/botonAtras.png")));
+		btnAtras.setIcon(imagenes.botonAtras);
 		btnAtras.setVisible(false);
 		
 		btnAtras.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
@@ -130,7 +130,7 @@ public class Menu {
 		
 		
 		JLabel Reglas = new JLabel("");
-		Reglas.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/instrucciones1.png")));
+		Reglas.setIcon(imagenes.instrucciones);
 		Reglas.setBounds(58, 237, 500, 327);
 		frame.getContentPane().add(Reglas);
 		Reglas.setVisible(false);
@@ -224,7 +224,6 @@ public class Menu {
 		
 		
 		lblRecuadroBackground.setIcon(imagenes.recuadroBackgroundMenu);
-		//lblRecuadroBackground.setIcon(Imagenes.recuadroBackgroundMenu);
 		lblRecuadroBackground.setBounds(185, 276, 228, 263);
 		frame.getContentPane().add(lblRecuadroBackground);
 		

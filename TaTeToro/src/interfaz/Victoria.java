@@ -61,7 +61,7 @@ public class Victoria {
 		
 		JLabel lblImagenGanador = new JLabel("");
 		lblImagenGanador.setBorder(new LineBorder(Color.WHITE, 2));
-		lblImagenGanador.setBounds(113, 153, 168, 156);
+		lblImagenGanador.setBounds(113, 153, 150, 156);
 		frame.getContentPane().add(lblImagenGanador);
 		
 		JLabel lblGanador = new JLabel("");

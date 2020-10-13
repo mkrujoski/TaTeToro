@@ -8,10 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JTextField;
-//import com.jgoodies.forms.factories.DefaultComponentFactory;
 import codigoCliente.Juego;
-//import java.awt.event.KeyAdapter;
-//import java.awt.event.KeyEvent;
 import java.awt.SystemColor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -21,8 +18,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import javax.swing.JFileChooser;
-//import com.jgoodies.forms.factories.DefaultComponentFactory;
-//import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 import java.awt.event.ActionListener;
@@ -81,7 +76,7 @@ public class Usuarios {
 		//IMAGENES
 		//Imagen del Jugador 1.
 		avatarJ1 = new JLabel("");
-		avatarJ1.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/clipart1853715.png")));
+		avatarJ1.setIcon(imagenes.ImagenJ1);
 		avatarJ1.setVerticalAlignment(SwingConstants.BOTTOM);
 		avatarJ1.setHorizontalAlignment(SwingConstants.CENTER);
 		avatarJ1.setBorder(new LineBorder(new Color(102, 204, 255)));
@@ -93,7 +88,7 @@ public class Usuarios {
 		
 		//Imagen del Juagdor 2.
 		JLabel avatarJ2 = new JLabel("");
-		avatarJ2.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/clipart1853715.png")));
+		avatarJ2.setIcon(imagenes.ImagenJ2);
 		avatarJ2.setVerticalAlignment(SwingConstants.BOTTOM);
 		avatarJ2.setBorder(new LineBorder(new Color(102, 204, 255)));
 		avatarJ2.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 60));
@@ -133,7 +128,7 @@ public class Usuarios {
 		
 		JButton elegirJ2 = new JButton("");
 		elegirJ2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-		elegirJ2.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/botonElegir1.png")));
+		elegirJ2.setIcon(imagenes.botonElegir);
 		elegirJ2.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -161,7 +156,7 @@ public class Usuarios {
 		
 		JButton elegirJ1 = new JButton("");
 		elegirJ1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-		elegirJ1.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/botonElegir1.png")));
+		elegirJ1.setIcon(imagenes.botonElegir);
 		elegirJ1.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -194,7 +189,7 @@ public class Usuarios {
 		frame.getContentPane().add(btnSalir);
 		
         JButton GuardarJ2 = new JButton("");
-        GuardarJ2.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/botonGuardar.png")));
+        GuardarJ2.setIcon(imagenes.botonGuardar);
         GuardarJ2.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
         GuardarJ2.addMouseListener(new MouseAdapter() {
             @Override
@@ -212,7 +207,7 @@ public class Usuarios {
         
 		        
 		JButton GuardarJ1 = new JButton("");
-		GuardarJ1.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/botonGuardar.png")));
+		GuardarJ1.setIcon(imagenes.botonGuardar);
 		GuardarJ1.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
 		GuardarJ1.addMouseListener(new MouseAdapter() {
 		    @Override
@@ -227,11 +222,11 @@ public class Usuarios {
 		GuardarJ1.setBounds(419, 108, 99, 33);
 		frame.getContentPane().add(GuardarJ1);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setIcon(new ImageIcon(Usuarios.class.getResource("/imagenesDelFondo/fondoUsuario.png")));
-		lblNewLabel.setBounds(0, 0, 600, 718);
-		frame.getContentPane().add(lblNewLabel);
+		JLabel lblFondoSeleccionUsuarios = new JLabel("");
+		lblFondoSeleccionUsuarios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFondoSeleccionUsuarios.setIcon(imagenes.fondoUsuarios);
+		lblFondoSeleccionUsuarios.setBounds(0, 0, 600, 718);
+		frame.getContentPane().add(lblFondoSeleccionUsuarios);
 		
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
