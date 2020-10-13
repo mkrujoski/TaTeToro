@@ -1,6 +1,7 @@
 package interfaz;
 
 import java.awt.Color;
+import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -21,22 +22,13 @@ public class Victoria {
 
 	private JFrame frame;
 
-	/**
-	 * Launch the application.
-	 */
 
-
-	/**
-	 * Create the application.
-	 */
-	public Victoria(Juego juego,HerramientasGraficas imagenes) {
+	public Victoria(Juego juego,Imagenes imagenes) {
 		initialize(juego,imagenes);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize(Juego juego,HerramientasGraficas imagenes) {
+	
+	private void initialize(Juego juego,Imagenes imagenes) {
 		frame = new JFrame();
 		frame.setBounds(680, 130, 600, 700);
 		frame.setUndecorated(true); //borra la barra arriba
@@ -47,87 +39,84 @@ public class Victoria {
 		frame.getContentPane().setLayout(null);
 		
 	
+		//---------------Inicializacion de label y botones-----------------------------
 		JLabel lbLNombreGanador = new JLabel("");
-		lbLNombreGanador.setFont(imagenes.getFont());
+		JLabel lbLSombraNombreGanador = new JLabel("");
+		JLabel lblImagenGanador = new JLabel("");
+		JLabel lblGanador = new JLabel("");
+		JLabel lblTurnos = new JLabel("");
+		JLabel lblTurnoSombra = new JLabel("Turnos Jugados: 0");
+		JButton btnSalir = new JButton("");
+		btnSalir.setIcon(imagenes.botonSalir);
+		JButton btnVolverAJugar = new JButton("");
+		JLabel lblFondo = new JLabel("");
+		
+		//--------------Creacion de label y botones--------------------------------------
+		
+		lbLNombreGanador.setFont(PantallaDeJuego.getFont());
 		lbLNombreGanador.setBounds(307, 219, 194, 55);
 		frame.getContentPane().add(lbLNombreGanador);
 		
-		JLabel lbLSombraNombreGanador = new JLabel("");
+		//-------------------------------------------------------------------------------
+		
 		lbLSombraNombreGanador.setForeground(new Color(255, 255, 255));
-		lbLSombraNombreGanador.setFont(null);
-		lbLSombraNombreGanador.setFont(imagenes.getFont());
+		lbLSombraNombreGanador.setFont(PantallaDeJuego.getFont());
 		lbLSombraNombreGanador.setBounds(309, 220, 194, 55);
 		frame.getContentPane().add(lbLSombraNombreGanador);
 		
-		JLabel lblImagenGanador = new JLabel("");
+		//-------------------------------------------------------------------------------
+		
 		lblImagenGanador.setBorder(new LineBorder(Color.WHITE, 2));
 		lblImagenGanador.setBounds(113, 153, 150, 156);
 		frame.getContentPane().add(lblImagenGanador);
+		if(imagenes.ImagenJ1 != null && juego.getTurno()=='X') {
+			ImagenDelGanador1(imagenes, juego, lblImagenGanador, lbLNombreGanador, lbLSombraNombreGanador,lblGanador);
+		}
 		
-		JLabel lblGanador = new JLabel("");
+		if(imagenes.ImagenJ2 != null && juego.getTurno()=='O') {
+			ImagenDelGanador2(imagenes, juego, lblImagenGanador, lbLNombreGanador, lbLSombraNombreGanador,lblGanador);	
+		}
+		
+		//-------------------------------------------------------------------------------
+		
 		lblGanador.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGanador.setBounds(187, 57, 240, 55);
 		frame.getContentPane().add(lblGanador);
 		
-		if(imagenes.ImagenJ1 != null && juego.getTurno()=='X') {
-			lblGanador.setIcon(imagenes.ganadorX);
-			lbLNombreGanador.setText(Juego.getJugador1());
-			lbLSombraNombreGanador.setText(Juego.getJugador1());
-			Icon icono = new ImageIcon(imagenes.ImagenJ1.getImage().getScaledInstance(lblImagenGanador.getWidth(), lblImagenGanador.getHeight(), Image.SCALE_DEFAULT));
-			lblImagenGanador.setIcon(icono);
-			
-		}
+		//-------------------------------------------------------------------------------
 		
-		if(imagenes.ImagenJ2 != null && juego.getTurno()=='O') {
-			lblGanador.setIcon(imagenes.ganadorO);
-			lbLNombreGanador.setText(Juego.getJugador2());
-			lbLSombraNombreGanador.setText(Juego.getJugador2());
-			Icon icono = new ImageIcon(imagenes.ImagenJ2.getImage().getScaledInstance(lblImagenGanador.getWidth(), lblImagenGanador.getHeight(), Image.SCALE_DEFAULT));
-			lblImagenGanador.setIcon(icono);
-			
-		}
-		
-		JLabel lblTurnos = new JLabel("");
 		lblTurnos.setBounds(187, 368, 228, 55);
 		frame.getContentPane().add(lblTurnos);
-		
-		
-		lblTurnos.setFont(imagenes.getFont()); //DE MOMENTO ESTA STATIC
+		lblTurnos.setFont(PantallaDeJuego.getFont()); //DE MOMENTO ESTA STATIC
 		lblTurnos.setText("Turnos Jugados: " + juego.getNdeTurnos());
 		
-		JLabel lblTurnoSombra = new JLabel("Turnos Jugados: 0");
+		//-------------------------------------------------------------------------------
+		
 		lblTurnoSombra.setForeground(new Color(255, 255, 255));
-		lblTurnoSombra.setFont(null);
 		lblTurnoSombra.setBounds(189, 369, 228, 55);
 		frame.getContentPane().add(lblTurnoSombra);
-		
-		lblTurnoSombra.setFont(imagenes.getFont()); //DE MOMENTO ESTA STATIC
+		lblTurnoSombra.setFont(PantallaDeJuego.getFont()); //DE MOMENTO ESTA STATIC
 		lblTurnoSombra.setText("Turnos Jugados: " + juego.getNdeTurnos());
-		
-		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(imagenes.botonSalir);
+		//-------------------------------------------------------------------------------
 		
 		btnSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
 		btnSalir.setBounds(445, 645, 131, 33);
 		frame.getContentPane().add(btnSalir);
 		
-		JButton btnVolverAJugar = new JButton("");
-		btnVolverAJugar.setIcon(imagenes.botonVolverAJugar);
+		//-------------------------------------------------------------------------------
 		
+		btnVolverAJugar.setIcon(imagenes.botonVolverAJugar);
 		btnVolverAJugar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
 		btnVolverAJugar.setBounds(217, 486, 150, 55);
 		frame.getContentPane().add(btnVolverAJugar);
 		
-		JLabel lblFondo = new JLabel("");
+		//-------------------------------------------------------------------------------
+		
 		lblFondo.setIcon(imagenes.fondoTablero);
-
 		lblFondo.setBounds(0, 0, 600, 689);
 		frame.getContentPane().add(lblFondo);
 		
-		
-		
-		
-	
+		//------------------Acciones Botones---------------------------------------------
 		
 		btnSalir.addMouseListener(new MouseAdapter() {
 			@Override
@@ -136,6 +125,7 @@ public class Victoria {
 			}
 		});
 		
+		//-------------------------------------------------------------------------------
 		
 		btnVolverAJugar.addMouseListener(new MouseAdapter() {
 			@Override
@@ -143,18 +133,36 @@ public class Victoria {
 				PantallaDeJuego tablero = new PantallaDeJuego(juego,imagenes);
 				tablero.getFrame().setVisible(true);
 				juego.vaciarJugadas();
-				
 				frame.dispose();
 			}
 		});		
 		
-			
+	
+	}
+	
+	//------------------Metodos Auxiliares----------------------------------
+	
+	private void ImagenDelGanador1(Imagenes imagenes,Juego juego,JLabel label,JLabel NombreGanador , JLabel SombraNombreGanador,JLabel lblGanador) {
+	
+		lblGanador.setIcon(imagenes.ganadorX);
+		NombreGanador.setText(Juego.getJugador1());
+		SombraNombreGanador.setText(Juego.getJugador1());
+		Icon icono = new ImageIcon(imagenes.ImagenJ1.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+		label.setIcon(icono);
 	
 	
 	}
 	
+	private void ImagenDelGanador2(Imagenes imagenes,Juego juego,JLabel label,JLabel NombreGanador , JLabel SombraNombreGanador,JLabel lblGanador) {
+		
+		lblGanador.setIcon(imagenes.ganadorO);
+		NombreGanador.setText(Juego.getJugador2());
+		SombraNombreGanador.setText(Juego.getJugador2());
+		Icon icono = new ImageIcon(imagenes.ImagenJ2.getImage().getScaledInstance(label.getWidth(), label.getHeight(), Image.SCALE_DEFAULT));
+		label.setIcon(icono);
 	
-
+	}
+	
 	public JFrame getFrame() {
 		return frame;
 	}

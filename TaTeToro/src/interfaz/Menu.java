@@ -20,40 +20,20 @@ import logica.Juego;
 public class Menu {
 
 	private JFrame frame;
-	private HerramientasGraficas imagenes;
+	private Imagenes imagenes;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Menu window = new Menu();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
-	/**
-	 * Create the application.
-	 */
 	public Menu() {
 		initialize();	
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
+
 	private void initialize() {
 		frame = new JFrame();
 		
 		Juego juego = new Juego();
 		
-		imagenes = new HerramientasGraficas();
+		Imagenes imagenes = new Imagenes();
 		
 		frame.setBounds(680, 130, 600, 700);
 		
@@ -65,7 +45,7 @@ public class Menu {
 		
 				JInternalFrame warning = new JInternalFrame("WARNING");   //FRAME INTERNO DE SALIR
 				warning.setBorder(null);
-				//warning.setBackground(Color.decode("#93e9ef"));
+				
 				warning.setBounds(172, 217, 259, 228); 
 				
 				frame.getContentPane().add(warning);
@@ -75,12 +55,16 @@ public class Menu {
 				BasicInternalFrameUI ui = (BasicInternalFrameUI)warning.getUI(); //ELIMINA BARRA BARRA FRAME INTERNO
 				ui.setNorthPane(null);
 				
+				//------------------Creacion e inicializacion de botones y labels------------------------------------
+				
 				JButton btnSi = new JButton("");
 				btnSi.setIcon(imagenes.botonSi);
 				btnSi.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
 				btnSi.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
 				btnSi.setBounds(75, 125, 102, 27);
 				warning.getContentPane().add(btnSi);
+				
+				//--------------------------------------------------------------------------------
 				
 				JButton btnNo = new JButton("");
 				btnNo.setIcon(imagenes.botonNo);
@@ -90,95 +74,115 @@ public class Menu {
 				warning.getContentPane().add(btnNo);
 				warning.setVisible(true);
 				
+				//--------------------------------------------------------------------------------
 				
 				JLabel lblBackgroundFrameInterno = new JLabel("");
 				lblBackgroundFrameInterno.setHorizontalAlignment(SwingConstants.CENTER);
 				lblBackgroundFrameInterno.setIcon(imagenes.fondoSalida);
 				lblBackgroundFrameInterno.setBounds(-12, -17, 282, 262);
 				warning.getContentPane().add(lblBackgroundFrameInterno);
+				//--------------------------------------------------------------------------------
 				
 				warning.setVisible(false);
 				
-		//-------------------------------------------------------------------------------------
+		//---------------Inicializacion de label y botones-----------------------------
 	
 		JButton btnJugar = new JButton("");
+		JButton btnSalir = new JButton("");
+		JLabel lblRecuadroBackground = new JLabel(""); //RECUADRO FONDO
+		JLabel lblBackground = new JLabel(""); //FONDO
+		JButton btnAtras = new JButton("");
+		JLabel ImagenReglas = new JLabel("");
+		JButton btnReglas = new JButton("");
+		
+		
+		//--------------Creacion de label y botones--------------------------------------
+		
+		btnJugar.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnJugar.setIcon(imagenes.botonJugar);
+		btnJugar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+		btnJugar.setBounds(234, 333, 131, 33);
+		frame.getContentPane().add(btnJugar);
+		
+		//--------------------------------------------------------------------------------
+	
+		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+		btnAtras.setIcon(imagenes.botonAtras);
+		btnAtras.setVisible(false);
+		btnAtras.setBounds(248, 607, 131, 33);
+		frame.getContentPane().add(btnAtras);
+		
+		//--------------------------------------------------------------------------------
+		
+		ImagenReglas.setIcon(imagenes.instrucciones);
+		ImagenReglas.setBounds(58, 237, 500, 327);
+		frame.getContentPane().add(ImagenReglas);
+		ImagenReglas.setVisible(false);
+		frame.getContentPane().setLayout(null);
+		
+		//--------------------------------------------------------------------------------
+		
+		btnSalir.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
+		btnSalir.setBounds(234, 455, 131, 33);
+		btnSalir.setIcon(imagenes.botonSalir);   
+		frame.getContentPane().add(btnSalir);
+		
+		//--------------------------------------------------------------------------------
+		
+		btnReglas.setIcon(imagenes.botonReglas);
+		btnReglas.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnReglas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+		btnReglas.setBounds(234, 393, 131, 33);
+		frame.getContentPane().add(btnReglas);
+		
+		//--------------------------------------------------------------------------------
+		
+		lblRecuadroBackground.setIcon(imagenes.recuadroBackgroundMenu);
+		lblRecuadroBackground.setBounds(185, 276, 228, 263);
+		frame.getContentPane().add(lblRecuadroBackground);
+		
+		//--------------------------------------------------------------------------------
+		
+		lblBackground.setBounds(0, 0, 600, 700);
+		lblBackground.setIcon(imagenes.backgroundMenu);
+		frame.getContentPane().add(lblBackground);
+		
+		
+		//--------------Acciones de Botones------------------------------
+		
 		btnJugar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				frame.setVisible(false);
+				frame.dispose();
 				Usuarios vent = new Usuarios(juego,imagenes);
 				vent.getFrame().setVisible(true);
 			}
 		});
-		btnJugar.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnJugar.setIcon(imagenes.botonJugar);
-		//btnJugar.setIcon(Imagenes.botonJugar);
-		btnJugar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-		btnJugar.setBounds(234, 333, 131, 33);
-
-		JButton btnSalir = new JButton("");
-		JLabel lblRecuadroBackground = new JLabel(""); //RECUADRO FONDO
-		JLabel lblBackground = new JLabel(""); //FONDO
-//		JButton btnAtras = new JButton();
-//		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-//		btnAtras.setIcon(imagenes.botonAtras);
-//		btnAtras.setVisible(false);
-//		btnAtras.setBounds(248, 607, 131, 33);
-//		frame.getContentPane().add(btnAtras);
-		JButton btnAtras = generarBotonAtras(248,607,131,33);
 		
+		//----------------------------------------------------------------
 		
-		JLabel Reglas = new JLabel("");
-		Reglas.setIcon(imagenes.instrucciones);
-		Reglas.setBounds(58, 237, 500, 327);
-		frame.getContentPane().add(Reglas);
-		Reglas.setVisible(false);
-		frame.getContentPane().setLayout(null);
-		
-		JButton btnReglas = new JButton("");
 		btnReglas.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblRecuadroBackground.setVisible(false);
-				btnSalir.setVisible(false);
-				btnJugar.setVisible(false);
-				btnReglas.setVisible(false);
-				Reglas.setVisible(true);
-				btnAtras.setVisible(true);
+				MostrarReglas(lblRecuadroBackground, btnSalir, btnJugar, btnReglas, ImagenReglas, btnAtras);
 				
 				btnAtras.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						lblRecuadroBackground.setVisible(true);
-						btnSalir.setVisible(true);
-						btnJugar.setVisible(true);
-						btnReglas.setVisible(true);
-						Reglas.setVisible(false);
-						btnAtras.setVisible(false);
+						MostrarMenu(lblRecuadroBackground, btnSalir, btnJugar, btnReglas, ImagenReglas, btnAtras);
 					}
 				});
 			}
 		});
 		
-
-		btnSalir.setIcon(imagenes.botonSalir);   // PERSONALIZACION BOTON SALIR
-		//btnSalir.setIcon(Imagenes.botonSalir);
-		btnSalir.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
-		btnSalir.setBounds(234, 455, 131, 33);
-		frame.getContentPane().add(btnSalir);
-		
+		//-----------------------------------------------------------------
 		
 		btnSalir.addMouseListener(new MouseAdapter() { //ACCION BOTON SALIR 
 			@Override
 			public void mouseClicked(MouseEvent e) { 
-
-				warning.setVisible(true);
-				btnJugar.setVisible(false);  
-				btnSalir.setVisible(false);
-				btnReglas.setVisible(false);
-				lblBackground.setVisible(false);
-				lblRecuadroBackground.setVisible(false);
+				
+				MostrarWarning(warning, btnJugar, btnSalir, btnReglas, lblBackground, lblRecuadroBackground);
 				frame.getContentPane().setBackground(Color.decode("#93e9ef")); 
 									
 				
@@ -196,57 +200,61 @@ public class Menu {
 				btnNo.addMouseListener(new MouseAdapter() {
 					@Override
 					public void mouseClicked(MouseEvent e) {
-						btnJugar.setVisible(true);
-						btnSalir.setVisible(true);
-						btnReglas.setVisible(true);
-						lblBackground.setVisible(true);
-						lblRecuadroBackground.setVisible(true);
-						warning.dispose();
+						VolverMenu(warning, btnJugar, btnSalir, btnReglas, lblBackground, lblRecuadroBackground);
+						
 					}
 				});
 			}
 		});
 		
-		
-		frame.getContentPane().add(btnJugar);
-		
-		
-		btnReglas.setIcon(imagenes.botonReglas);
-		//btnReglas.setIcon(Imagenes.botonReglas);
-		btnReglas.setHorizontalTextPosition(SwingConstants.CENTER);
-		btnReglas.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-		btnReglas.setBounds(234, 393, 131, 33);
-		frame.getContentPane().add(btnReglas);
-		
-		
-		lblRecuadroBackground.setIcon(imagenes.recuadroBackgroundMenu);
-		lblRecuadroBackground.setBounds(185, 276, 228, 263);
-		frame.getContentPane().add(lblRecuadroBackground);
-		
-		lblBackground.setBounds(0, 0, 600, 700);
-		//NO BORRAR ESTA LINEA HASTA EL FINAL DEL TP
-		//lblBackground.setIcon(new ImageIcon(Menu.class.getResource("/imagenesDelFondo/gifBackground.gif")));
-		lblBackground.setIcon(imagenes.backgroundMenu);
-		//lblBackground.setIcon(Imagenes.backgroundMenu);
-		frame.getContentPane().add(lblBackground);
-			
 	}
 	
-	//DUDO DE IMPLEMENTARLO
-	public JButton generarBotonAtras(int x, int y, int w, int h) {
-		JButton btnAtras = new JButton();
-		btnAtras.setBounds(x, y, w, h);
-		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-		btnAtras.setIcon(imagenes.botonAtras);
+	//------------------Metodos Auxiliares----------------------------------
+	
+	private void MostrarReglas(JLabel lblRecuadroBackground,JButton btnSalir,JButton btnJugar,JButton btnReglas,JLabel ImagenReglas,JButton btnAtras) 
+	{
+		lblRecuadroBackground.setVisible(false);
+		btnSalir.setVisible(false);
+		btnJugar.setVisible(false);
+		btnReglas.setVisible(false);
+		ImagenReglas.setVisible(true);
+		btnAtras.setVisible(true);
+	}
+	
+	private void MostrarMenu(JLabel lblRecuadroBackground,JButton btnSalir,JButton btnJugar,JButton btnReglas,JLabel ImagenReglas,JButton btnAtras) 
+	{
+		lblRecuadroBackground.setVisible(true);
+		btnSalir.setVisible(true);
+		btnJugar.setVisible(true);
+		btnReglas.setVisible(true);
+		ImagenReglas.setVisible(false);
 		btnAtras.setVisible(false);
-		frame.getContentPane().add(btnAtras);	
-		return btnAtras;
 	}
 	
+	private void MostrarWarning(JInternalFrame warning,JButton btnJugar,JButton btnSalir,JButton btnReglas,JLabel lblBackground,JLabel lblRecuadroBackground) 
+	{
+		warning.setVisible(true);
+		btnJugar.setVisible(false);  
+		btnSalir.setVisible(false);
+		btnReglas.setVisible(false);
+		lblBackground.setVisible(false);
+		lblRecuadroBackground.setVisible(false);
+	}
+	
+	private void VolverMenu(JInternalFrame warning,JButton btnJugar,JButton btnSalir,JButton btnReglas,JLabel lblBackground,JLabel lblRecuadroBackground) 
+	{
+		btnJugar.setVisible(true);
+		btnSalir.setVisible(true);
+		btnReglas.setVisible(true);
+		lblBackground.setVisible(true);
+		lblRecuadroBackground.setVisible(true);
+		warning.dispose();
+	}
 	
 	public JFrame getFrame() {
 		return frame;
 	}
+
 
 
 }

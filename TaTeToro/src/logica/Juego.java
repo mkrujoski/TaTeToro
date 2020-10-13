@@ -1,5 +1,9 @@
 package logica;
 
+import java.awt.Font;
+import java.io.File;
+import java.io.FileInputStream;
+
 public class Juego {
 	private static char turno;
 	private static char turnoInicial;
@@ -253,4 +257,5 @@ public class Juego {
 	public static void setJugador2(String jugador2) {
 		Jugador2 = jugador2;
 	}
+	
 }
