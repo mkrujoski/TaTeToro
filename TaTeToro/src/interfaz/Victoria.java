@@ -23,12 +23,12 @@ public class Victoria {
 	private JFrame frame;
 
 
-	public Victoria(Juego juego,Imagenes imagenes) {
+	public Victoria(Juego juego,HerramientasGraficas imagenes) {
 		initialize(juego,imagenes);
 	}
 
 	
-	private void initialize(Juego juego,Imagenes imagenes) {
+	private void initialize(Juego juego,HerramientasGraficas imagenes) {
 		frame = new JFrame();
 		frame.setBounds(680, 130, 600, 700);
 		frame.setUndecorated(true); //borra la barra arriba
@@ -53,14 +53,14 @@ public class Victoria {
 		
 		//--------------Creacion de label y botones--------------------------------------
 		
-		lbLNombreGanador.setFont(PantallaDeJuego.getFont());
+		lbLNombreGanador.setFont(imagenes.getFont());
 		lbLNombreGanador.setBounds(307, 219, 194, 55);
 		frame.getContentPane().add(lbLNombreGanador);
 		
 		//-------------------------------------------------------------------------------
 		
 		lbLSombraNombreGanador.setForeground(new Color(255, 255, 255));
-		lbLSombraNombreGanador.setFont(PantallaDeJuego.getFont());
+		lbLSombraNombreGanador.setFont(imagenes.getFont());
 		lbLSombraNombreGanador.setBounds(309, 220, 194, 55);
 		frame.getContentPane().add(lbLSombraNombreGanador);
 		
@@ -87,7 +87,7 @@ public class Victoria {
 		
 		lblTurnos.setBounds(187, 368, 228, 55);
 		frame.getContentPane().add(lblTurnos);
-		lblTurnos.setFont(PantallaDeJuego.getFont()); //DE MOMENTO ESTA STATIC
+		lblTurnos.setFont(imagenes.getFont()); 
 		lblTurnos.setText("Turnos Jugados: " + juego.getNdeTurnos());
 		
 		//-------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ public class Victoria {
 		lblTurnoSombra.setForeground(new Color(255, 255, 255));
 		lblTurnoSombra.setBounds(189, 369, 228, 55);
 		frame.getContentPane().add(lblTurnoSombra);
-		lblTurnoSombra.setFont(PantallaDeJuego.getFont()); //DE MOMENTO ESTA STATIC
+		lblTurnoSombra.setFont(imagenes.getFont()); 
 		lblTurnoSombra.setText("Turnos Jugados: " + juego.getNdeTurnos());
 		//-------------------------------------------------------------------------------
 		
@@ -142,7 +142,7 @@ public class Victoria {
 	
 	//------------------Metodos Auxiliares----------------------------------
 	
-	private void ImagenDelGanador1(Imagenes imagenes,Juego juego,JLabel label,JLabel NombreGanador , JLabel SombraNombreGanador,JLabel lblGanador) {
+	private void ImagenDelGanador1(HerramientasGraficas imagenes,Juego juego,JLabel label,JLabel NombreGanador , JLabel SombraNombreGanador,JLabel lblGanador) {
 	
 		lblGanador.setIcon(imagenes.ganadorX);
 		NombreGanador.setText(Juego.getJugador1());
@@ -153,7 +153,7 @@ public class Victoria {
 	
 	}
 	
-	private void ImagenDelGanador2(Imagenes imagenes,Juego juego,JLabel label,JLabel NombreGanador , JLabel SombraNombreGanador,JLabel lblGanador) {
+	private void ImagenDelGanador2(HerramientasGraficas imagenes,Juego juego,JLabel label,JLabel NombreGanador , JLabel SombraNombreGanador,JLabel lblGanador) {
 		
 		lblGanador.setIcon(imagenes.ganadorO);
 		NombreGanador.setText(Juego.getJugador2());

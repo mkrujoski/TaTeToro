@@ -20,7 +20,7 @@ import logica.Juego;
 public class Menu {
 
 	private JFrame frame;
-	private Imagenes imagenes;
+	private HerramientasGraficas imagenes;
 
 
 	public Menu() {
@@ -33,7 +33,7 @@ public class Menu {
 		
 		Juego juego = new Juego();
 		
-		Imagenes imagenes = new Imagenes();
+		HerramientasGraficas imagenes = new HerramientasGraficas();
 		
 		frame.setBounds(680, 130, 600, 700);
 		

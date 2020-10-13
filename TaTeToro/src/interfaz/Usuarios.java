@@ -37,12 +37,12 @@ public class Usuarios {
 	private JLabel avatarJ1;
 
 	//CREA LA APLICACION
-	public Usuarios(Juego juego, Imagenes imagenes) {
+	public Usuarios(Juego juego, HerramientasGraficas imagenes) {
 		initialize(juego,imagenes);
 	}
 
 	//INICIALIZA EL CONTENIDO DEL FRAME
-	private void initialize(Juego juego, Imagenes imagenes) {
+	private void initialize(Juego juego, HerramientasGraficas imagenes) {
 		
 		//VENTANA DE USUARIOS
 		frame = new JFrame();

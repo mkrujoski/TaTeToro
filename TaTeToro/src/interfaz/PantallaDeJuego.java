@@ -25,15 +25,14 @@ public class PantallaDeJuego {
 	private boolean seleccionado7;
 	private boolean seleccionado8;
 	private boolean seleccionado9;
-	static Font font;
 
 	
-	public PantallaDeJuego(Juego juego,Imagenes imagenes) {
+	public PantallaDeJuego(Juego juego,HerramientasGraficas imagenes) {
 		initialize(juego,imagenes);	
 	}
 	
 	
-	private void initialize(Juego juego,Imagenes imagenes) { //frame del fondo principal
+	private void initialize(Juego juego,HerramientasGraficas imagenes) { //frame del fondo principal
 		
 		frame = new JFrame();
 		X = imagenes.x;
@@ -61,7 +60,6 @@ public class PantallaDeJuego {
 		//---------------Inicializacion de label y botones-----------------------------
 		
 		JLabel lblNombreJugador1 = new JLabel(Juego.getJugador1());
-		JLabel lblNombreJugador2 = new JLabel(Juego.getJugador2());
 		JLabel lblGanador = new JLabel("");
 		JLabel Tablero = new JLabel("");  
 		JLabel lblIconX = new JLabel(""); //Icon que va al lado del nombre del Jugador X
@@ -80,21 +78,21 @@ public class PantallaDeJuego {
 		JLabel panel8 = new JLabel("");
 		JLabel panel9 = new JLabel("");
 		JLabel lblDecoracionFondo = new JLabel("");
-		
-		//--------------Creacion de label y botones--------------------------------------
-		
-		lblNombreJugador1.setForeground(Color.BLACK);
-		lblNombreJugador1.setFont(getFont());
-		lblNombreJugador1.setBounds(77, 21, 180, 43);
-		frame.getContentPane().add(lblNombreJugador1);
+		JLabel lblNombreJugador2 = new JLabel(Juego.getJugador2());
 		
 		//-------------------------------------------------------------------------------
 		
-		lblNombreJugador2.setFont(getFont());
-		lblNombreJugador2.setBounds(347, 21, 171, 43);
-		lblNombreJugador2.setHorizontalAlignment(SwingConstants.RIGHT);
-		frame.getContentPane().add(lblNombreJugador2);
+		lblNombreJugador1.setForeground(Color.BLACK);
+		lblNombreJugador1.setFont(imagenes.getFont());
+		lblNombreJugador1.setBounds(77, 21, 180, 43);
+		frame.getContentPane().add(lblNombreJugador1);
 		
+		//--------------Creacion de label y botones--------------------------------------
+		lblNombreJugador2.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNombreJugador2.setFont(imagenes.getFont());
+		lblNombreJugador2.setSize(lblNombreJugador2.getPreferredSize());
+		lblNombreJugador2.setBounds(359, 21, 171, 43);
+		frame.getContentPane().add(lblNombreJugador2);
 		//-------------------------------------------------------------------------------
 		
 		lblGanador.setHorizontalAlignment(SwingConstants.LEFT);
@@ -117,7 +115,7 @@ public class PantallaDeJuego {
 		
 		lblIconO.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblIconO.setIcon(imagenes.iconO);
-		lblIconO.setBounds(528, 21, 46, 43);
+		lblIconO.setBounds(540, 21, 46, 43);
 		frame.getContentPane().add(lblIconO);
 		
 		//-------------------------------------------------------------------------------
@@ -499,7 +497,7 @@ public class PantallaDeJuego {
 			public void mouseClicked(MouseEvent e) {
 				
 				frame.dispose();
-				Imagenes imagen = new Imagenes();
+				HerramientasGraficas imagen = new HerramientasGraficas();
 				Usuarios vent = new Usuarios(juego,imagen);
 				vent.getFrame().setVisible(true);
 				
@@ -534,7 +532,7 @@ public class PantallaDeJuego {
 			boton.setEnabled(true);
 	}
 	
-	private void GanadorX(Imagenes imagenes,Juego juego ,JLabel lbl,JButton boton,JLabel lblTurno) 
+	private void GanadorX(HerramientasGraficas imagenes,Juego juego ,JLabel lbl,JButton boton,JLabel lblTurno) 
 	{
 		lbl.setIcon(imagenes.ganadorX);		
 		boton.setVisible(true);
@@ -542,7 +540,7 @@ public class PantallaDeJuego {
 		lblTurno.setVisible(false);
 	}
 	
-	private void GanadorO(Imagenes imagenes,Juego juego ,JLabel lbl,JButton boton,JLabel lblTurno) 
+	private void GanadorO(HerramientasGraficas imagenes,Juego juego ,JLabel lbl,JButton boton,JLabel lblTurno) 
 	{
 		lbl.setIcon(imagenes.ganadorO);		
 		boton.setVisible(true);
@@ -550,7 +548,7 @@ public class PantallaDeJuego {
 		lblTurno.setVisible(false);
 	}
 	
-	private void Turnos(Juego juego,Imagenes imagenes,JLabel lbl) 
+	private void Turnos(Juego juego,HerramientasGraficas imagenes,JLabel lbl) 
 	{
 		juego.cambiarTurno();
 		if(juego.getTurno()=='X')
@@ -578,7 +576,7 @@ public class PantallaDeJuego {
 		
 	}
 
-	private void CambiarImagen(JLabel p1, JLabel p2, JLabel p3, JLabel p4, JLabel p5, JLabel p6, JLabel p7, JLabel p8, JLabel p9, int num, char letra ,Imagenes imagen) 
+	private void CambiarImagen(JLabel p1, JLabel p2, JLabel p3, JLabel p4, JLabel p5, JLabel p6, JLabel p7, JLabel p8, JLabel p9, int num, char letra ,HerramientasGraficas imagen) 
 	{ 
 		
 		if(num==1 && letra=='X') 
@@ -734,18 +732,9 @@ public class PantallaDeJuego {
 			p8.setIcon(imagen.o_ganadora);
 		}
 	}
+
 	
-	static Font getFont() {
-		try {
-		  font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File ("Anthology-SansDEMO.ttf"))).deriveFont(Font.PLAIN, 19);
-		}	
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return font;
-	}
-	
-	private void TurnoImagen(JLabel label,Juego juego,Imagenes imagenes) 
+	private void TurnoImagen(JLabel label,Juego juego,HerramientasGraficas imagenes) 
 	{
 		if(juego.getTurnoInicial()=='X') 
 		{
