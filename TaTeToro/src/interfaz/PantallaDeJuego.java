@@ -126,7 +126,8 @@ public class PantallaDeJuego {
 		frame.getContentPane().add(btnBotonAtras);
 		
 		JButton botonInfo = new JButton("");
-		botonInfo.setIcon(new ImageIcon(PantallaDeJuego.class.getResource("/imagenesDelFondo/botonInfo.png")));
+		botonInfo.setIcon(imagenes.botonInfo);
+		//botonInfo.setIcon(new ImageIcon(PantallaDeJuego.class.getResource("/imagenesDelFondo/botonInfo.png")));
 		botonInfo.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
 		botonInfo.setBounds(234, 656, 131, 33);
 		frame.getContentPane().add(botonInfo);

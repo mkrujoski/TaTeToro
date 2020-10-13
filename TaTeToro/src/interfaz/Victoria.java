@@ -70,7 +70,7 @@ public class Victoria {
 		frame.getContentPane().add(lblGanador);
 		
 		if(imagenes.ImagenJ1 != null && juego.getTurno()=='X') {
-			lblGanador.setIcon(new ImageIcon(Victoria.class.getResource("/imagenesDelFondo/ganadorX.png")));
+			lblGanador.setIcon(imagenes.ganadorX);
 			lbLNombreGanador.setText(Juego.getJugador1());
 			lbLSombraNombreGanador.setText(Juego.getJugador1());
 			Icon icono = new ImageIcon(imagenes.ImagenJ1.getImage().getScaledInstance(lblImagenGanador.getWidth(), lblImagenGanador.getHeight(), Image.SCALE_DEFAULT));
@@ -79,7 +79,7 @@ public class Victoria {
 		}
 		
 		if(imagenes.ImagenJ2 != null && juego.getTurno()=='O') {
-			lblGanador.setIcon(new ImageIcon(Victoria.class.getResource("/imagenesDelFondo/ganadorO.png")));
+			lblGanador.setIcon(imagenes.ganadorO);
 			lbLNombreGanador.setText(Juego.getJugador2());
 			lbLSombraNombreGanador.setText(Juego.getJugador2());
 			Icon icono = new ImageIcon(imagenes.ImagenJ2.getImage().getScaledInstance(lblImagenGanador.getWidth(), lblImagenGanador.getHeight(), Image.SCALE_DEFAULT));
@@ -105,21 +105,21 @@ public class Victoria {
 		lblTurnoSombra.setText("Turnos Jugados: " + juego.getNdeTurnos());
 		
 		JButton btnSalir = new JButton("");
-		btnSalir.setIcon(new ImageIcon(Victoria.class.getResource("/imagenesDelFondo/botonSalir.png")));
+		btnSalir.setIcon(imagenes.botonSalir);
 		
 		btnSalir.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
 		btnSalir.setBounds(445, 645, 131, 33);
 		frame.getContentPane().add(btnSalir);
 		
 		JButton btnVolverAJugar = new JButton("");
-		btnVolverAJugar.setIcon(new ImageIcon(Victoria.class.getResource("/imagenesDelFondo/botonVolverAJugar.png")));
+		btnVolverAJugar.setIcon(imagenes.botonVolverAJugar);
 		
 		btnVolverAJugar.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, Color.BLACK));
 		btnVolverAJugar.setBounds(217, 486, 150, 55);
 		frame.getContentPane().add(btnVolverAJugar);
 		
 		JLabel lblFondo = new JLabel("");
-		lblFondo.setIcon(new ImageIcon(Victoria.class.getResource("/imagenesDelFondo/fondoTablero.gif")));
+		lblFondo.setIcon(imagenes.fondoTablero);
 
 		lblFondo.setBounds(0, 0, 600, 689);
 		frame.getContentPane().add(lblFondo);
