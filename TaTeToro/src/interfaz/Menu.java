@@ -14,13 +14,13 @@ import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
-import codigoCliente.Juego;
+import logica.Juego;
 
 
 public class Menu {
 
 	private JFrame frame;
-	private Imagenes imagenes;
+	private HerramientasGraficas imagenes;
 
 	/**
 	 * Launch the application.
@@ -53,7 +53,7 @@ public class Menu {
 		
 		Juego juego = new Juego();
 		
-		imagenes = new Imagenes();
+		imagenes = new HerramientasGraficas();
 		
 		frame.setBounds(680, 130, 600, 700);
 		
@@ -119,14 +119,13 @@ public class Menu {
 		JButton btnSalir = new JButton("");
 		JLabel lblRecuadroBackground = new JLabel(""); //RECUADRO FONDO
 		JLabel lblBackground = new JLabel(""); //FONDO
-		JButton btnAtras = new JButton("");
-		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
-		btnAtras.setIcon(imagenes.botonAtras);
-		btnAtras.setVisible(false);
-		
-		btnAtras.setFont(new Font("Showcard Gothic", Font.PLAIN, 14));
-		btnAtras.setBounds(248, 607, 131, 33);
-		frame.getContentPane().add(btnAtras);
+//		JButton btnAtras = new JButton();
+//		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+//		btnAtras.setIcon(imagenes.botonAtras);
+//		btnAtras.setVisible(false);
+//		btnAtras.setBounds(248, 607, 131, 33);
+//		frame.getContentPane().add(btnAtras);
+		JButton btnAtras = generarBotonAtras(248,607,131,33);
 		
 		
 		JLabel Reglas = new JLabel("");
@@ -160,9 +159,6 @@ public class Menu {
 				});
 			}
 		});
-		
-		
-		
 		
 
 		btnSalir.setIcon(imagenes.botonSalir);   // PERSONALIZACION BOTON SALIR
@@ -235,6 +231,18 @@ public class Menu {
 		frame.getContentPane().add(lblBackground);
 			
 	}
+	
+	//DUDO DE IMPLEMENTARLO
+	public JButton generarBotonAtras(int x, int y, int w, int h) {
+		JButton btnAtras = new JButton();
+		btnAtras.setBounds(x, y, w, h);
+		btnAtras.setBorder(new BevelBorder(BevelBorder.RAISED, null, null, null, new Color(0, 0, 0)));
+		btnAtras.setIcon(imagenes.botonAtras);
+		btnAtras.setVisible(false);
+		frame.getContentPane().add(btnAtras);	
+		return btnAtras;
+	}
+	
 	
 	public JFrame getFrame() {
 		return frame;

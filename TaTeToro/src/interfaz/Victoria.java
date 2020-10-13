@@ -1,7 +1,6 @@
 package interfaz;
 
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -14,7 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
 
-import codigoCliente.Juego;
+import logica.Juego;
+
 import javax.swing.SwingConstants;
 
 public class Victoria {
@@ -29,14 +29,14 @@ public class Victoria {
 	/**
 	 * Create the application.
 	 */
-	public Victoria(Juego juego,Imagenes imagenes) {
+	public Victoria(Juego juego,HerramientasGraficas imagenes) {
 		initialize(juego,imagenes);
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Juego juego,Imagenes imagenes) {
+	private void initialize(Juego juego,HerramientasGraficas imagenes) {
 		frame = new JFrame();
 		frame.setBounds(680, 130, 600, 700);
 		frame.setUndecorated(true); //borra la barra arriba
@@ -48,14 +48,14 @@ public class Victoria {
 		
 	
 		JLabel lbLNombreGanador = new JLabel("");
-		lbLNombreGanador.setFont(PantallaDeJuego.getFont());
+		lbLNombreGanador.setFont(imagenes.getFont());
 		lbLNombreGanador.setBounds(307, 219, 194, 55);
 		frame.getContentPane().add(lbLNombreGanador);
 		
 		JLabel lbLSombraNombreGanador = new JLabel("");
 		lbLSombraNombreGanador.setForeground(new Color(255, 255, 255));
 		lbLSombraNombreGanador.setFont(null);
-		lbLSombraNombreGanador.setFont(PantallaDeJuego.getFont());
+		lbLSombraNombreGanador.setFont(imagenes.getFont());
 		lbLSombraNombreGanador.setBounds(309, 220, 194, 55);
 		frame.getContentPane().add(lbLSombraNombreGanador);
 		
@@ -92,7 +92,7 @@ public class Victoria {
 		frame.getContentPane().add(lblTurnos);
 		
 		
-		lblTurnos.setFont(PantallaDeJuego.getFont()); //DE MOMENTO ESTA STATIC
+		lblTurnos.setFont(imagenes.getFont()); //DE MOMENTO ESTA STATIC
 		lblTurnos.setText("Turnos Jugados: " + juego.getNdeTurnos());
 		
 		JLabel lblTurnoSombra = new JLabel("Turnos Jugados: 0");
@@ -101,7 +101,7 @@ public class Victoria {
 		lblTurnoSombra.setBounds(189, 369, 228, 55);
 		frame.getContentPane().add(lblTurnoSombra);
 		
-		lblTurnoSombra.setFont(PantallaDeJuego.getFont()); //DE MOMENTO ESTA STATIC
+		lblTurnoSombra.setFont(imagenes.getFont()); //DE MOMENTO ESTA STATIC
 		lblTurnoSombra.setText("Turnos Jugados: " + juego.getNdeTurnos());
 		
 		JButton btnSalir = new JButton("");

@@ -2,12 +2,15 @@ package interfaz;
 
 import java.awt.*;
 import javax.swing.*;
-import codigoCliente.Juego;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileInputStream;
 import javax.swing.border.BevelBorder;
+
+import interfaz.Menu;
+import logica.Juego;
 
 public class PantallaDeJuego {
 
@@ -23,7 +26,6 @@ public class PantallaDeJuego {
 	private boolean seleccionado7;
 	private boolean seleccionado8;
 	private boolean seleccionado9;
-	static Font font;
 
 	/**
 	 * Launch the application.
@@ -33,7 +35,7 @@ public class PantallaDeJuego {
 	/**
 	 * Create the application.
 	 */
-	public PantallaDeJuego(Juego juego,Imagenes imagenes) {
+	public PantallaDeJuego(Juego juego,HerramientasGraficas imagenes) {
 		initialize(juego,imagenes);	
 	}
 	
@@ -42,7 +44,7 @@ public class PantallaDeJuego {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	private void initialize(Juego juego,Imagenes imagenes) { //frame del fondo principal
+	private void initialize(Juego juego,HerramientasGraficas imagenes) { //frame del fondo principal
 		
 		frame = new JFrame();
 		seleccionado1 = false;
@@ -52,26 +54,22 @@ public class PantallaDeJuego {
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // To set the action when Frame is closed.
 		frame.getContentPane().setBackground(Color.decode("#93e9ef")); //COLOR DE FONDO
-		
-		
+	
 		
 		X = imagenes.x;
 		O = imagenes.o;
-	
 		
 		frame.getContentPane().setLayout(null);
 		
-		
-		
 		JLabel lblNombreJugador1 = new JLabel(Juego.getJugador1());
 		lblNombreJugador1.setForeground(Color.BLACK);
-		lblNombreJugador1.setFont(getFont());
+		lblNombreJugador1.setFont(imagenes.getFont());
 		lblNombreJugador1.setBounds(77, 21, 180, 43);
 		frame.getContentPane().add(lblNombreJugador1);
 		
 		JLabel lblNombreJugador2 = new JLabel(Juego.getJugador2());
-		lblNombreJugador2.setFont(getFont());
-		lblNombreJugador2.setBounds(347, 21, 180, 43);
+		lblNombreJugador2.setFont(imagenes.getFont());
+		lblNombreJugador2.setBounds(347, 21, 171, 43);
 		lblNombreJugador2.setHorizontalAlignment(SwingConstants.RIGHT);
 		frame.getContentPane().add(lblNombreJugador2);
 		
@@ -97,7 +95,7 @@ public class PantallaDeJuego {
 		frame.getContentPane().add(lblIconO);
 		
 		JLabel lblTurno = new JLabel(""); //ESTE ES EL LABEL DE TURNO:O / TURNO: X
-		lblTurno.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
+	//	lblTurno.setFont(new Font("Anthology Regular DEMO", Font.PLAIN, 19));
 		lblTurno.setBounds(234, 102, 131, 43);
 		frame.getContentPane().add(lblTurno);
 		if(juego.getTurnoInicial()=='X') 
@@ -133,7 +131,7 @@ public class PantallaDeJuego {
 		frame.getContentPane().add(botonInfo);
 		botonInfo.setVisible(false);
 		
-		//--------------------------------------------------------
+		//--------------------------------------------------------------------------
 		JLabel panel1 = new JLabel("");
 		panel1.setBounds(121, 195, 100, 100);
 		frame.getContentPane().add(panel1);
@@ -170,7 +168,7 @@ public class PantallaDeJuego {
 		panel9.setBounds(370, 441, 100, 100);
 		frame.getContentPane().add(panel9);
 		
-		//-----------------------------------------------------------
+		//----------------------------------------------------------------------------
 			
 		panel1.addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent e) {
@@ -642,7 +640,7 @@ public class PantallaDeJuego {
 		
 	}
 
-	private void CambiarImagen(JLabel p1, JLabel p2, JLabel p3, JLabel p4, JLabel p5, JLabel p6, JLabel p7, JLabel p8, JLabel p9, int num, char letra ,Imagenes imagen) 
+	private void CambiarImagen(JLabel p1, JLabel p2, JLabel p3, JLabel p4, JLabel p5, JLabel p6, JLabel p7, JLabel p8, JLabel p9, int num, char letra ,HerramientasGraficas imagen) 
 	{ 
 		
 		if(num==1 && letra=='X') 
@@ -799,15 +797,15 @@ public class PantallaDeJuego {
 		}
 	}
 	
-	static Font getFont() {
-		try {
-		  font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File ("Anthology-SansDEMO.ttf"))).deriveFont(Font.PLAIN, 19);
-		}	
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
-		return font;
-	}
+//	static Font getFont() {
+//		try {
+//		  font = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File ("Anthology-SansDEMO.ttf"))).deriveFont(Font.PLAIN, 19);
+//		}	
+//		catch (Exception ex) {
+//			ex.printStackTrace();
+//		}
+//		return font;
+//	}
 	
 	private ImageIcon colocarSimbolo(Juego juego) { //hacer juego.getTurno y no Juego.getTurno (hay que sacar el static)
 		if(juego.getTurno() == 'X') 

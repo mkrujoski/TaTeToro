@@ -8,7 +8,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Image;
 import javax.swing.JTextField;
-import codigoCliente.Juego;
+
 import java.awt.SystemColor;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -20,6 +20,9 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.LineBorder;
+
+import logica.Juego;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -31,16 +34,16 @@ public class Usuarios {
 	private JTextField nJugador2;
 	public static JFileChooser fc = new JFileChooser();
 	public File file;
-	public Imagenes img;
+	public HerramientasGraficas img;
 	private JLabel avatarJ1;
 
 	//CREA LA APLICACION
-	public Usuarios(Juego juego, Imagenes imagenes) {
+	public Usuarios(Juego juego, HerramientasGraficas imagenes) {
 		initialize(juego,imagenes);
 	}
 
 	//INICIALIZA EL CONTENIDO DEL FRAME
-	private void initialize(Juego juego, Imagenes imagenes) {
+	private void initialize(Juego juego, HerramientasGraficas imagenes) {
 		
 		//VENTANA DE USUARIOS
 		frame = new JFrame();
@@ -103,6 +106,7 @@ public class Usuarios {
 		nJugador1.setBounds(186, 108, 223, 31);
 		nJugador1.setColumns(10);
 		frame.getContentPane().add(nJugador1);
+		
 		
 		//Crea la barra editable donde el jugador 2 escribe su nombre de usuario.		
 		nJugador2 = new JTextField();
